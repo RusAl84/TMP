@@ -23,10 +23,13 @@
     <ClInclude Include="Queue.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
+    <ClInclude Include="StackPtr.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="adapter4stack.h">
+    <ClInclude Include="Adapter4stackPtr.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="StackMas.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

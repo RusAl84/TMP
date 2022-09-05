@@ -130,9 +130,10 @@
     <ClCompile Include="TMP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="adapter4stack.h" />
+    <ClInclude Include="Adapter4stackPtr.h" />
     <ClInclude Include="Queue.h" />
-    <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackMas.h" />
+    <ClInclude Include="StackPtr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
