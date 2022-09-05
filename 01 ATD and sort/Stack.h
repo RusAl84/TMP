@@ -4,7 +4,7 @@
 using namespace std;
 
 // Определяем емкость stack по умолчанию
-#define SIZE 10*1000
+#define SIZE 10*1000*1000
 
 // Класс для представления stack
 class Stack

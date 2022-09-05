@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include "Stack.h"
-#include "Adapter4stack.h"
+#include "Adapter4stackPtr.h"
 using namespace std;
 
 void example_work_stack() {
@@ -20,7 +20,7 @@ void example_work_stack() {
     cout << "Size of Stack " << st.size() << endl;
 }
 void example_work_adapter4stack() {
-    Adapter4stack* ast = new Adapter4stack();
+    Adapter4stackPtr* ast = new Adapter4stackPtr();
     ast->push(1);
     ast->push(2);
     ast->push(3);
@@ -36,19 +36,20 @@ void example_work_adapter4stack() {
     cout << ast->getElement(2);
 }
 
-void bubbleSort4stack() {
-    Adapter4stack* ast = new Adapter4stack();
+void bubbleSort4stackptr() {
+    Adapter4stackPtr* ast = new Adapter4stackPtr();
     ast->push(1);
     ast->push(2);
     ast->push(3);
     ast->push(4);
     ast->display();
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 9; j++) {
-            if (ast->getElement(j) > ast->getElement(j+1)) {
+    int size = ast->size();
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size-1; j++) {
+            if (ast->getElement(j) > ast->getElement(j + 1)) {
                 int b = ast->getElement(j); // создали дополнительную переменную
-                ast->setElement(j, ast->getElement(j)); // digitals[j] = digitals[j + 1]; // меняем местами
-                ast->setElement(j + 1, b); //digitals[j + 1] = b; // значения элементов
+                ast->setElement(j,ast->getElement(j + 1)); // меняем местами
+                ast->setElement(j + 1, b); // значения элементов
             }
         }
     }
@@ -62,9 +63,6 @@ int main()
 {
     //example_work_stack();
     //example_work_adapter4stack();
-    bubbleSort4stack();
-    //ввод N
+    bubbleSort4stackptr();  // 76 variant
 
-
-    
 }

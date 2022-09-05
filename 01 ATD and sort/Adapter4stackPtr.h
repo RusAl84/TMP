@@ -1,11 +1,10 @@
 #pragma once
 #include "Stack.h"
-class Adapter4stack
+class Adapter4stackPtr
 {
 	Stack* st;
-    //bool debug;
 public:
-	Adapter4stack() {
+	Adapter4stackPtr() {
 		st = new Stack();
 	}
 	int size() {
@@ -17,7 +16,6 @@ public:
 	bool isFull() {
 		return st->isFull();     // или return size() == capacity;
 	}
-
 	int getElement(int ind) {
 		int size = st->size();
 		if ((ind >= 0) and (ind < size)){
