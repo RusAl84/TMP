@@ -27,8 +27,13 @@ void example_work_adapter4stack() {
     ast->push(4);
     ast->display();
     cout << endl;
-    cout << ast->getElement(1);
-
+    cout << ast->getElement(0);
+    cout << endl;
+    ast->setElement(2,130);
+    cout << endl;
+    ast->display(); 
+    cout << endl;
+    cout << ast->getElement(2);
 }
 
 

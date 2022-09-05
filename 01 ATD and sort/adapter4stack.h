@@ -3,7 +3,7 @@
 class Adapter4stack
 {
 	Stack* st;
-    bool debug;
+    //bool debug;
 public:
 	Adapter4stack() {
 		st = new Stack();
@@ -19,11 +19,18 @@ public:
 	}
 
 	int getElement(int ind) {
-		if ((ind >= 0) and (ind < st->size())){
+		int size = st->size();
+		if ((ind >= 0) and (ind < size)){
+			Stack* tmpSt1 = new Stack();
 			int element;
 			for (int i = 0; i <= ind; i++) {
 				element = st->pop();
+				tmpSt1->push(element);
 			}
+			for (int i = 0; i <= ind; i++) {	
+				st->push(tmpSt1->pop());
+			}
+
 			return element;
 		}
 		return -1;
@@ -34,17 +41,23 @@ public:
 	/// <param name="ind">индекс</param>
 	/// <param name="element">эелемент</param>
 	bool  setElement(int ind,int element) {
-		Stack* tmpSt1 = new Stack();
-		if ((ind >= 0) and (ind < st->size())) {
-			int size = st->size();
+		int size = st->size();
+		if ((ind >= 0) and (ind < size)) {
+			Stack* tmpSt1 = new Stack();
 			for (int i = 0; i < ind; i++) {
 				tmpSt1->push(st->pop());
 			}
 			tmpSt1->push(element);
-			for (int i = ind; i < size; i++) {
+			int del_element= st->pop();
+			for (int i = ind+1; i < size; i++) {
 				tmpSt1->push(st->pop());
 			}
-
+			delete(st);
+			Stack* tmpSt2 = new Stack();
+			for (int i = 0; i < size; i++)
+				tmpSt2->push(tmpSt1->pop());
+			delete(tmpSt1);
+			st = tmpSt2;
 			return true;
 		}
 		
@@ -69,7 +82,6 @@ public:
 			tmpSt2->push(tmpSt1->pop());
 		delete(tmpSt1);		
 		st = tmpSt2;
-		delete(tmpSt2);
 	}
 };
 
