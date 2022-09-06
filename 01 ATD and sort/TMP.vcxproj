@@ -130,6 +130,8 @@
     <ClCompile Include="TMP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapter4queueStl.h" />
+    <ClInclude Include="Adapter4stackMas.h" />
     <ClInclude Include="Adapter4stackPtr.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="StackMas.h" />
