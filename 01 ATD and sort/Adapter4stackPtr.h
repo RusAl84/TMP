@@ -1,11 +1,11 @@
 #pragma once
-#include "Stack.h"
+#include "StackPtr.h"
 class Adapter4stackPtr
 {
-	Stack* st;
+	StackPtr* st;
 public:
 	Adapter4stackPtr() {
-		st = new Stack();
+		st = new StackPtr();
 	}
 	int size() {
 		return st->size();
@@ -19,7 +19,7 @@ public:
 	int getElement(int ind) {
 		int size = st->size();
 		if ((ind >= 0) and (ind < size)){
-			Stack* tmpSt1 = new Stack();
+			StackPtr* tmpSt1 = new StackPtr();
 			int element;
 			for (int i = 0; i <= ind; i++) {
 				element = st->pop();
@@ -41,7 +41,7 @@ public:
 	bool  setElement(int ind,int element) {
 		int size = st->size();
 		if ((ind >= 0) and (ind < size)) {
-			Stack* tmpSt1 = new Stack();
+			StackPtr* tmpSt1 = new StackPtr();
 			for (int i = 0; i < ind; i++) {
 				tmpSt1->push(st->pop());
 			}
@@ -51,7 +51,7 @@ public:
 				tmpSt1->push(st->pop());
 			}
 			delete(st);
-			Stack* tmpSt2 = new Stack();
+			StackPtr* tmpSt2 = new StackPtr();
 			for (int i = 0; i < size; i++)
 				tmpSt2->push(tmpSt1->pop());
 			delete(tmpSt1);
@@ -67,7 +67,7 @@ public:
 		st->push(x);
 	}
 	void display() {
-		Stack *tmpSt1 = new Stack();
+		StackPtr *tmpSt1 = new StackPtr();
 		int size = st->size();
 		for (int i = 0; i < size; i++) {
 			int element = st->pop();
@@ -75,7 +75,7 @@ public:
 			tmpSt1->push(element);
 		}
 		delete(st);
-		Stack* tmpSt2 = new Stack();
+		StackPtr* tmpSt2 = new StackPtr();
 		for (int i = 0; i < size; i++)
 			tmpSt2->push(tmpSt1->pop());
 		delete(tmpSt1);		
