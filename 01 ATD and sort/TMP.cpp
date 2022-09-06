@@ -142,7 +142,7 @@ void example_work_adapter4queueStl() {
     ast->push(4000);
     ast->push(5000);
     cout << endl;    ast->Dislay();
-    cout << endl << ast->getElement(5);
+    cout << endl << ast->setElement(4,9999);
     cout << endl;    ast->Dislay();
     cout << endl << ast->getElement(4);
     cout << endl;    ast->Dislay();

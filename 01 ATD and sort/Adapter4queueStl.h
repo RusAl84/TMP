@@ -57,10 +57,29 @@ public:
 		}
 		return -1;
 	}
-	bool  setElement(int ind, int element) {
+	int  setElement(int ind, int element) {
 		int size = qu->size();
 		if ((ind >= 0) and (ind < size)) {
+			queue <int>* quTmp1 = new queue<int>();
+			
+			for (int i = 0; i < ind; i++) {
+				int elTmp = qu->front();
+				qu->pop();
+				quTmp1->push(elTmp);
+			}
+			quTmp1->push(element);
+			qu->pop();
+			for (int i = ind; i < size - 1; i++) {
+				quTmp1->push(qu->front());
+				qu->pop();
+			}
+			for (int i = 0; i < size; i++) {
+				qu->push(quTmp1->front());
+				quTmp1->pop();
+			}
+			return element;
 		}
+		return -1;
 	}
 };
 
