@@ -11,6 +11,7 @@ class StackMas
 {
     int* arr;
     int top;
+    int data[SIZE];
     int capacity;
     bool debug;
 public:
@@ -20,7 +21,6 @@ public:
         int size = SIZE;
         capacity = size;
         top = -1;
-        int numbers[SIZE];
         //arr = new int[size];
     }
     // Деструктор для освобождения памяти, выделенной для stack
@@ -28,26 +28,25 @@ public:
         //delete[] arr;
     }
     // Вспомогательная функция для добавления элемента `x` в stack
-    void push(int x)
+    void push(int element)
     {
-        //if (isFull())
-        //{
-        //    cout << "Overflow\nProgram Terminated\n";
-        //    exit(EXIT_FAILURE);
-        //}
-        //if (debug)
-        //    cout << "Inserting " << x << endl;
-        //arr[++top] = x;
+        if (not isFull())
+        {
+            top++;
+            data[top] = element;
+        }
     }
     // Вспомогательная функция для извлечения верхнего элемента из stack
     int pop()
     {
-
+        int element = data[top];
+        top--;
+        return element;
     }
     // Вспомогательная функция для возврата верхнего элемента stack
     int peek()
     {
-
+        return data[top];
     }
     // Вспомогательная функция для возврата размера stack
     int size() {

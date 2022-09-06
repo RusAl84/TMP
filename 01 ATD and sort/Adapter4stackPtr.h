@@ -28,7 +28,6 @@ public:
 			for (int i = 0; i <= ind; i++) {	
 				st->push(tmpSt1->pop());
 			}
-
 			return element;
 		}
 		return -1;
