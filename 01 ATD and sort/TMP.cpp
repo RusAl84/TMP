@@ -3,6 +3,8 @@
 #include "Adapter4stackPtr.h"
 #include "StackMas.h"
 #include "Adapter4stackMas.h"
+#include <queue>
+#include "Adapter4queueStl.h"
 using namespace std;
 
 // var 76 
@@ -116,6 +118,36 @@ void bubbleSort4stackMas() {
 }
 
 // var 07
+void example_work_queueStl() {
+    queue <int> q1;
+    q1.push(1000);
+    q1.push(2000);
+    q1.push(3000);
+    q1.push(4000);
+    q1.push(5000);
+    int size = q1.size();
+    cout << "Size of queue: " << size << endl;
+    for (int i = 0; i < size; i++) {
+        cout << q1.front() << " ";
+        q1.pop();
+    }
+    size = q1.size();
+    cout << endl << "Size of queue: " << size << endl;
+}
+void example_work_adapter4queueStl() {
+    Adapter4queueStl* ast = new Adapter4queueStl();
+    ast->push(1000);
+    ast->push(2000);
+    ast->push(3000);
+    ast->push(4000);
+    ast->push(5000);
+    cout << endl;    ast->Dislay();
+    cout << endl << ast->getElement(5);
+    cout << endl;    ast->Dislay();
+    cout << endl << ast->getElement(4);
+    cout << endl;    ast->Dislay();
+}
+
 
 void CompCountSort(int* array, int* count, int size)
 {
@@ -146,4 +178,6 @@ int main()
     //example_work_stackMas();
     //example_work_adapter4stackMas();
     //bubbleSort4stackMas();
+
+    example_work_adapter4queueStl();
 }

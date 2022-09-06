@@ -1,38 +1,66 @@
 #pragma once
 #include <queue>
+#include <iostream>
 using namespace std;
 
 class Adapter4queueStl
 {
-	queue <int> qu;
+	queue <int> *qu;
 public:
+	Adapter4queueStl() {
+		qu = new queue<int>();
+	}
 	void push(int x)
 	{
-		qu.push(x);
+		qu->push(x);
 	}
 	int size() {
-		return qu.size();
+		return qu->size();
 	}
 	bool isEmpty() {
-		return qu.empty();               // или return size() == 0;
+		return qu->empty();               // или return size() == 0;
 	}
+	void Dislay() {
+		int size = qu->size();
+		queue <int> *quTmp1 = new queue<int>();
+		for (int i = 0; i < size; i++) {
+			cout << qu->front() << " ";
+			quTmp1->push(qu->front());
+			qu->pop();
+		}
+		for (int i = 0; i < size; i++) {
+			qu->push(quTmp1->front());
+			quTmp1->pop();
+		}
+		//delete(quTmp1);
+	}
+
 	int getElement(int ind) {
-		int size = qu.size();
+		int size = qu->size();
 		if ((ind >= 0) and (ind < size)) {
-		//	queue <int> quTmp1;
-		//	int element;
-		//	for (int i = 0; i <= ind; i++) {
-		//		element = st->pop();
-		//		tmpSt1->push(element);
-		//	}
-		//	for (int i = 0; i <= ind; i++) {
-		//		st->push(tmpSt1->pop());
-		//	}
-			//return element;
-			return 0;
+			queue <int>* quTmp1 = new queue<int>();
+			int element;
+			for (int i = 0; i <= ind; i++) {
+				element = qu->front();
+				qu->pop();
+				quTmp1->push(element);
+			}
+			for (int i = ind; i < size-1; i++) {
+				quTmp1->push(qu->front());
+				qu->pop();
+			}
+			for (int i = 0; i < size; i++) {
+				qu->push(quTmp1->front());
+				quTmp1->pop();
+			}
+			return element;
 		}
 		return -1;
 	}
-
+	bool  setElement(int ind, int element) {
+		int size = qu->size();
+		if ((ind >= 0) and (ind < size)) {
+		}
+	}
 };
 

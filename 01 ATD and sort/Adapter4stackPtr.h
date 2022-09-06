@@ -16,6 +16,11 @@ public:
 	bool isFull() {
 		return st->isFull();     // или return size() == capacity;
 	}
+	/// <summary>
+	/// Получить элемент
+	/// </summary>
+	/// <param name="ind"> индекс</param>
+	/// <returns></returns>
 	int getElement(int ind) {
 		int size = st->size();
 		if ((ind >= 0) and (ind < size)){
