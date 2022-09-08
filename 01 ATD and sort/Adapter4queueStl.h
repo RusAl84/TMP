@@ -37,13 +37,15 @@ public:
 
 	int getElement(int ind) {
 		int size = qu->size();
+		int element = -1;
 		if ((ind >= 0) and (ind < size)) {
 			queue <int>* quTmp1 = new queue<int>();
-			int element;
+			
 			for (int i = 0; i <= ind; i++) {
 				element = qu->front();
 				qu->pop();
 				quTmp1->push(element);
+				
 			}
 			for (int i = ind; i < size-1; i++) {
 				quTmp1->push(qu->front());

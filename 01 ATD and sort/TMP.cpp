@@ -5,6 +5,8 @@
 #include "Adapter4stackMas.h"
 #include <queue>
 #include "Adapter4queueStl.h"
+#include "QueueMas.h"
+#include "adapter4queueMas.h"
 using namespace std;
 
 // var 76 
@@ -120,11 +122,11 @@ void bubbleSort4stackMas() {
 // var 07
 void example_work_queueStl() {
     queue <int> q1;
-    q1.push(1000);
-    q1.push(2000);
-    q1.push(3000);
-    q1.push(4000);
-    q1.push(5000);
+    q1.push(1);
+    q1.push(2);
+    q1.push(3);
+    q1.push(4);
+    q1.push(5);
     int size = q1.size();
     cout << "Size of queue: " << size << endl;
     for (int i = 0; i < size; i++) {
@@ -148,6 +150,54 @@ void example_work_adapter4queueStl() {
     cout << endl;    ast->Dislay();
 }
 
+void example_work_queueMas() {
+    QueueMas *q1 = new QueueMas();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Dislay();
+    cout << endl; q1->Dislay();
+    cout << endl; q1->Dislay();
+    cout << endl; q1->Dislay();
+    cout << endl;
+    for (int i = 0; i < size; i++) {
+        cout << q1->front() << " ";
+        q1->pop();
+    }    
+    cout << endl;
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->push(100);
+    q1->Dislay();
+
+    size = q1->size();
+    cout << endl << "Size of queue: " << size << endl;
+}
+void example_work_adapter4queueMas() {
+    adapter4queueMas* q1 = new adapter4queueMas();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Dislay();
+    int element = q1->getElement(4);
+    cout << endl<< element;
+    cout << endl; q1->Dislay();
+    cout << endl; q1->Dislay();
+}
 
 void CompCountSort(int* array, int* count, int size)
 {
@@ -179,5 +229,10 @@ int main()
     //example_work_adapter4stackMas();
     //bubbleSort4stackMas();
 
-    example_work_adapter4queueStl();
+    //var 7
+    // example_work_adapter4queueStl();
+
+    // var 45
+    //example_work_queueMas();
+    example_work_adapter4queueMas();
 }
