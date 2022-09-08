@@ -44,5 +44,11 @@
     <ClInclude Include="adapter4queueMas.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="QueuePtr.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="adapter4queuePtr.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

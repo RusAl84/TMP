@@ -7,6 +7,8 @@
 #include "Adapter4queueStl.h"
 #include "QueueMas.h"
 #include "adapter4queueMas.h"
+#include "QueuePtr.h"
+#include "adapter4queuePtr.h"
 using namespace std;
 
 // var 76 
@@ -149,6 +151,23 @@ void example_work_adapter4queueStl() {
     cout << endl << ast->getElement(4);
     cout << endl;    ast->Dislay();
 }
+void CompCountSort(int* array, int* count, int size)
+{
+    register int i, j;
+    for (i = 0; i < size; i++)
+        count[i] = 0;
+    for (i = 0; i < size - 1; i++)
+    {
+        for (j = i + 1; j < size; j++)
+        {
+            if (array[i] < array[j])
+                count[j]++;
+            else
+                count[i]++;
+        }
+    }
+    return;
+}
 
 // var 45
 void example_work_queueMas() {
@@ -213,7 +232,6 @@ void DoubleMergeSort4queueMas() {
 
 
 }
-
 void DoubleMergeSort(adapter4queueMas* a, int l, int r) {
     if (l == r) return; // границы сомкнулись
     int mid = (l + r) / 2; // определяем середину последовательности
@@ -247,23 +265,95 @@ void DoubleMergeSort(adapter4queueMas* a, int l, int r) {
     //    a[l + step] = tmp[step];
 }
 
-void CompCountSort(int* array, int* count, int size)
+// var 34
+void example_work_queuePtr() {
+    QueuePtr* q1 = new QueuePtr();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl << "Queue: "; q1->Display();
+    cout << endl << "Front: " << q1->front();
+    q1->pop();
+    q1->pop();
+    q1->pop();
+    q1->push(6);
+    cout << endl << "Queue: "; q1->Display();
+    cout <<endl<< "front: " << q1->front();
+}
+void example_work_adapter4queuePtr() {
+    adapter4QueuePtr* q1 = new adapter4QueuePtr();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    q1->setElement(2, 1000);
+    int element = q1->getElement(2);
+    cout << endl << element;
+    cout << endl; q1->Display();
+    
+    element = q1->getElement(2);
+    cout << endl << element;     
+    
+    element = q1->getElement(2);
+    cout << endl << element;
+    cout << endl; q1->Display();
+}
+// Функция быстрой сортировки
+void quickSortQueuePtr(adapter4QueuePtr array, int low, int high)
 {
-    register int i, j;
-    for (i = 0; i < size; i++)
-        count[i] = 0;
-    for (i = 0; i < size - 1; i++)
+    //adapter4QueuePtr* array = arrayq->copy();
+    cout << endl << " low: " << low << "high: " << high << " QueuePtr "; array.Display();
+    int i = low;
+    int j = high;
+    //int pivot = array[(i + j) / 2];
+    int pivot = array.getElement((i + j) / 2);
+    int temp;
+    while (i <= j)
     {
-        for (j = i + 1; j < size; j++)
+        while (array.getElement(i) < pivot)
+        //while (array[i] < pivot)
+            i++;
+        while (array.getElement(j) > pivot)
+            j--;
+        if (i <= j)
         {
-            if (array[i] < array[j])
-                count[j]++;
-            else
-                count[i]++;
+            temp = array.getElement(i);
+            //array[i] = array[j];
+            array.setElement(i, array.getElement(j));
+            array.setElement(i, temp);
+            i++;
+            j--;
         }
     }
-    return;
+    if (j > low)
+        quickSortQueuePtr(array, low, j);
+    if (i < high)
+        quickSortQueuePtr(array, i, high);
 }
+void example_work_quickSortQueuePtr() {
+    adapter4QueuePtr q1 = adapter4QueuePtr();
+    q1.push(5);
+    q1.push(2);
+    q1.push(3);
+    q1.push(4);
+    q1.push(5);
+    q1.push(5);
+    int size = q1.size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1.Display();
+    quickSortQueuePtr(q1, 0, size - 1);
+    cout << endl; q1.Display();
+    cout << endl; q1.Display();
+}
+
 
 int main()
 {
@@ -283,5 +373,11 @@ int main()
     // var 45
     //example_work_queueMas();
     //example_work_adapter4queueMas();
-    DoubleMergeSort4queueMas();
+    //DoubleMergeSort4queueMas();
+
+    // var 34 
+    //example_work_queuePtr();
+    example_work_adapter4queuePtr();
+    example_work_quickSortQueuePtr();
+
 }
