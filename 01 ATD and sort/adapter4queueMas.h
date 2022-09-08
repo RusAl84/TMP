@@ -43,8 +43,25 @@ public:
 		}
 		return element;
 	}
-	bool  setElement(int ind, int element) {
-
+	void  setElement(int ind, int element) {
+		int size = qu->size();
+		if ((ind >= 0) and (ind < size)) {
+			QueueMas* queTmp1 = new QueueMas();
+			for (int i = 0; i < ind; i++) {
+				queTmp1->push(front());
+				pop();
+			}
+			queTmp1->push(element);
+			pop();
+			for (int i = ind +1; i < size; i++) {
+				queTmp1->push(front());
+				pop();
+			}
+			for (int i = 0; i < size; i++) {
+				push(queTmp1->front());
+				queTmp1->pop();
+			}
+		}
 	}
 };
 

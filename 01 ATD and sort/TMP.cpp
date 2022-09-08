@@ -150,6 +150,7 @@ void example_work_adapter4queueStl() {
     cout << endl;    ast->Dislay();
 }
 
+// var 45
 void example_work_queueMas() {
     QueueMas *q1 = new QueueMas();
     q1->push(1);
@@ -193,10 +194,57 @@ void example_work_adapter4queueMas() {
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << endl; q1->Dislay();
+    q1->setElement(4,1000);
     int element = q1->getElement(4);
     cout << endl<< element;
     cout << endl; q1->Dislay();
     cout << endl; q1->Dislay();
+}
+void DoubleMergeSort4queueMas() {
+    adapter4queueMas* q1 = new adapter4queueMas();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Dislay();
+
+
+}
+
+void DoubleMergeSort(adapter4queueMas* a, int l, int r) {
+    if (l == r) return; // границы сомкнулись
+    int mid = (l + r) / 2; // определяем середину последовательности
+    // и рекурсивно вызываем функцию сортировки для каждой половины
+    DoubleMergeSort(a, l, mid);
+    DoubleMergeSort(a, mid + 1, r);
+    int i = l;  // начало первого пути
+    int j = mid + 1; // начало второго пути
+    //int* tmp = (int*)malloc(r * sizeof(int)); 
+    // дополнительный массив
+    adapter4queueMas* tmp = new adapter4queueMas();
+
+
+    for (int step = 0; step < r - l + 1; step++) // для всех элементов дополнительного массива
+    {
+        // записываем в формируемую последовательность меньший из элементов двух путей
+        // или остаток первого пути если j > r
+        //if ((j > r) || ((i <= mid) && (a[i] < a[j])))
+        //{
+        //    tmp[step] = a[i]; // tmp->setElemrnt(stem,a->getElement(i))
+        //    i++;
+        //}
+        //else
+        //{
+        //    tmp[step] = a[j];
+        //    j++;
+        //}
+    }
+    // переписываем сформированную последовательность в исходный массив
+    //for (int step = 0; step < r - l + 1; step++)
+    //    a[l + step] = tmp[step];
 }
 
 void CompCountSort(int* array, int* count, int size)
@@ -234,5 +282,6 @@ int main()
 
     // var 45
     //example_work_queueMas();
-    example_work_adapter4queueMas();
+    //example_work_adapter4queueMas();
+    DoubleMergeSort4queueMas();
 }
