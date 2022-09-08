@@ -297,38 +297,38 @@ void example_work_adapter4queuePtr() {
     q1->setElement(2, 1000);
     int element = q1->getElement(2);
     cout << endl << element;
-    cout << endl; q1->Display();
-    
+    cout << endl; q1->Display(); 
     element = q1->getElement(2);
     cout << endl << element;     
-    
     element = q1->getElement(2);
     cout << endl << element;
     cout << endl; q1->Display();
 }
 // Функция быстрой сортировки
-void quickSortQueuePtr(adapter4QueuePtr array, int low, int high)
+void quickSortQueuePtr(adapter4QueuePtr* array, int low, int high)
 {
     //adapter4QueuePtr* array = arrayq->copy();
-    cout << endl << " low: " << low << "high: " << high << " QueuePtr "; array.Display();
+    //cout << endl << " low: " << low << " high: " << high << " QueuePtr "; array->Display();
     int i = low;
     int j = high;
     //int pivot = array[(i + j) / 2];
-    int pivot = array.getElement((i + j) / 2);
+    int pivot = array->getElement((i + j) / 2);
     int temp;
     while (i <= j)
     {
-        while (array.getElement(i) < pivot)
+        while (array->getElement(i) < pivot)
         //while (array[i] < pivot)
             i++;
-        while (array.getElement(j) > pivot)
+        while (array->getElement(j) > pivot)
             j--;
         if (i <= j)
         {
-            temp = array.getElement(i);
-            //array[i] = array[j];
-            array.setElement(i, array.getElement(j));
-            array.setElement(i, temp);
+            //temp = array->getElement(i);
+            //array->setElement(i, array->getElement(j));
+            //array->setElement(i, temp);
+            temp = array->getElement(i);
+            array->setElement(i, array->getElement(j));
+            array->setElement(j, temp);
             i++;
             j--;
         }
@@ -339,19 +339,19 @@ void quickSortQueuePtr(adapter4QueuePtr array, int low, int high)
         quickSortQueuePtr(array, i, high);
 }
 void example_work_quickSortQueuePtr() {
-    adapter4QueuePtr q1 = adapter4QueuePtr();
-    q1.push(5);
-    q1.push(2);
-    q1.push(3);
-    q1.push(4);
-    q1.push(5);
-    q1.push(5);
-    int size = q1.size();
+    adapter4QueuePtr* q1 = new adapter4QueuePtr();
+    q1->push(5);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    q1->push(5);
+    int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1.Display();
+    cout << endl; q1->Display();
     quickSortQueuePtr(q1, 0, size - 1);
-    cout << endl; q1.Display();
-    cout << endl; q1.Display();
+    cout << endl; q1->Display();
+    cout << endl; q1->Display();
 }
 
 
@@ -377,7 +377,7 @@ int main()
 
     // var 34 
     //example_work_queuePtr();
-    example_work_adapter4queuePtr();
-    example_work_quickSortQueuePtr();
+    //example_work_adapter4queuePtr();
+    //example_work_quickSortQueuePtr();
 
 }

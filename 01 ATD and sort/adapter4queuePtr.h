@@ -5,8 +5,13 @@ class adapter4QueuePtr
 	QueuePtr* qu;
 public:
 	adapter4QueuePtr() {
+		//cout << "\nОбычный конструктор\n";
 		qu = new QueuePtr();
 	}
+	//adapter4QueuePtr(const adapter4QueuePtr& obj)
+	//{
+	//	cout << "\nКонструктор копирования\n";
+	//}
 	void Display() {
 		qu->Display();
 	}
