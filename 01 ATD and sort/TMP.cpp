@@ -15,34 +15,38 @@ using namespace std;
 void example_work_stack() {
     std::cout << "Example work with stack!\n";
     StackPtr st = StackPtr();
-    st.push(1);
-    st.push(2);
-    st.push(3);
-    st.push(4);
-    st.push(5);
+    st.push(1000);
+    st.push(2000);
+    st.push(3000);
+    st.push(4000);
+    st.push(5000);
     int st_size = st.size();
     cout << "Size of Stack " << st.size() << endl;
     for (int i = 0; i < st_size; i++){
         cout << st.pop() << endl;
         //cout << st.peek() << endl;
     }
+    st.push(999);
+    cout << endl << st.peek() << endl;
     cout << "Size of Stack " << st.size() << endl;
 }
 void example_work_adapter4stack() {
     Adapter4stackPtr* ast = new Adapter4stackPtr();
-    ast->push(1);
-    ast->push(2);
-    ast->push(3);
-    ast->push(4);
+    ast->push(1000);
+    ast->push(2000);
+    ast->push(3000);
+    ast->push(4000);
+    ast->push(5000);
+    ast->push(6000);
     ast->display();
     cout << endl;
-    cout << ast->getElement(0);
+    cout << ast->getElement(3);
     cout << endl;
-    ast->setElement(2,999);
+    ast->setElement(3,999);
     cout << endl;
     ast->display(); 
     cout << endl;
-    cout << ast->getElement(2);
+    cout << ast->getElement(3);
 }
 void bubbleSort4stackptr() {
     Adapter4stackPtr* ast = new Adapter4stackPtr();
@@ -354,7 +358,7 @@ void example_work_quickSortQueuePtr() {
     cout << endl; q1->Display();
 }
 
-// var 92
+// var 92 
 void merge_adapter4stack(Adapter4stackPtr* array, int const left, int const mid,
     int const right)
 {
@@ -446,6 +450,85 @@ void mergeSort_start_adapter4stack()
     cout << endl; a->display();
 }
 
+
+// var 44
+ /**
+  * Сортирует массив, используя рекурсивную сортировку слиянием
+  * up - указатель на массив, который нужно сортировать
+  * down - указатель на массив с, как минимум, таким же размером как у 'up', используется как буфер
+  * left - левая граница массива, передайте 0, чтобы сортировать массив с начала
+  * right - правая граница массива, передайте длину массива - 1, чтобы сортировать массив до последнего элемента
+  * возвращает: указатель на отсортированный массив. Из-за особенностей работы данной реализации
+  * отсортированная версия массива может оказаться либо в 'up', либо в 'down'
+  **/
+void merge_sort_adapter4stackPtr_start() {
+    //merge_sort_adapter4stackPtr
+    Adapter4stackPtr* ast1 = new Adapter4stackPtr();
+    ast1->push(1000);
+    ast1->push(2000);
+    ast1->push(3000);
+    ast1->push(4000);
+    ast1->push(5000);
+    ast1->push(6000);
+    ast1->display();
+    int size = ast1->size();
+    cout << endl << " size: " << size << endl;
+    Adapter4stackPtr* ast2 = new Adapter4stackPtr();
+    for (int i=0;i<size;i++)
+        ast2->push(-1);
+    Adapter4stackPtr* result;
+    result = merge_sort_adapter4stackPtr(ast1, ast2, 0, size-1);
+};
+Adapter4stackPtr* merge_sort_adapter4stackPtr(Adapter4stackPtr* up, Adapter4stackPtr* down, unsigned int left, unsigned int right)
+{
+    if (left == right)
+    {
+        //down[left] = up[left];
+        down->setElement(left, up->getElement(left));
+        return down;
+    }
+
+    unsigned int middle = left + (right - left) / 2;
+
+    // разделяй и сортируй
+    Adapter4stackPtr* l_buff = merge_sort_adapter4stackPtr(up, down, left, middle);
+    Adapter4stackPtr* r_buff = merge_sort_adapter4stackPtr(up, down, middle + 1, right);
+
+    // слияние двух отсортированных половин
+    Adapter4stackPtr* target = l_buff == up ? down : up;
+
+    unsigned int l_cur = left, r_cur = middle + 1;
+    for (unsigned int i = left; i <= right; i++)
+    {
+        if (l_cur <= middle && r_cur <= right)
+        {
+            //if (l_buff[l_cur] < r_buff[r_cur])
+            if (l_buff->getElement(l_cur) < r_buff->getElement(r_cur))
+            {
+                target[i] = l_buff[l_cur];
+                target->setElement(i, l_buff->getElement(l_cur));
+                l_cur++;
+            }
+            else
+            {
+                target[i] = r_buff[r_cur];
+                r_cur++;
+            }
+        }
+        else if (l_cur <= middle)
+        {
+            target[i] = l_buff[l_cur];
+            l_cur++;
+        }
+        else
+        {
+            target[i] = r_buff[r_cur];
+            r_cur++;
+        }
+    }
+    return target;
+}
+
 int main()
 {
     // 76 variant
@@ -474,6 +557,9 @@ int main()
     //var 92
     //example_work_stack();
     //example_work_adapter4stack();
-    mergeSort_start_adapter4stack();
+    //mergeSort_start_adapter4stack();
 
+    //var 44
+    //example_work_stack();
+    example_work_adapter4stack();
 }

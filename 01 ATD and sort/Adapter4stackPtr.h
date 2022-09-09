@@ -10,6 +10,10 @@ public:
 	int size() {
 		return st->size();
 	}
+	/// <summary>
+	/// Проверка пуст ли стек?
+	/// </summary>
+	/// <returns>True - пустой</returns>
 	bool isEmpty() {
 		return st->isEmpty();               // или return size() == 0;
 	}
@@ -33,6 +37,7 @@ public:
 			for (int i = 0; i <= ind; i++) {	
 				st->push(tmpSt1->pop());
 			}
+			delete tmpSt1;
 			return element;
 		}
 		return -1;
