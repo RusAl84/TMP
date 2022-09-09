@@ -354,6 +354,97 @@ void example_work_quickSortQueuePtr() {
     cout << endl; q1->Display();
 }
 
+// var 92
+void merge_adapter4stack(Adapter4stackPtr* array, int const left, int const mid,
+    int const right)
+{
+    auto const subArrayOne = mid - left + 1;
+    auto const subArrayTwo = right - mid;
+
+    // Create temp arrays
+    //auto* leftArray = new int[subArrayOne],
+    //    * rightArray = new int[subArrayTwo];
+    Adapter4stackPtr* leftArray = new Adapter4stackPtr();
+    Adapter4stackPtr* rightArray = new Adapter4stackPtr();
+    for (int z = 0; z < 7; z++)
+    {
+        leftArray->push(0);
+        rightArray->push(0);
+    }
+
+    // Copy data to temp arrays leftArray[] and rightArray[]
+    for (auto i = 0; i < subArrayOne; i++)
+        //leftArray[i] = array[left + i];
+        leftArray->setElement(i, array->getElement(left + i));
+
+    for (auto j = 0; j < subArrayTwo; j++)
+        //rightArray[j] = array[mid + 1 + j];
+        rightArray->setElement(j, array->getElement(mid + 1 + j));
+
+    auto indexOfSubArrayOne = 0, // Initial index of first sub-array
+        indexOfSubArrayTwo = 0; // Initial index of second sub-array
+    int indexOfMergedArray = left; // Initial index of merged array
+
+    // Merge the temp arrays back into array[left..right]
+    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
+        if (leftArray->getElement(indexOfSubArrayOne) <= rightArray->getElement(indexOfSubArrayTwo)) {
+            //if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
+            //array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            array->setElement(indexOfMergedArray, leftArray->getElement(indexOfSubArrayOne));
+            indexOfSubArrayOne++;
+        }
+        else {
+            //array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            array->setElement(indexOfMergedArray, rightArray->getElement(indexOfSubArrayTwo));
+            indexOfSubArrayTwo++;
+        }
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // left[], if there are any
+    while (indexOfSubArrayOne < subArrayOne) {
+        //array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+        array->setElement(indexOfMergedArray, leftArray->getElement(indexOfSubArrayOne));
+        indexOfSubArrayOne++;
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // right[], if there are any
+    while (indexOfSubArrayTwo < subArrayTwo) {
+        //array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+        array->setElement(indexOfMergedArray, rightArray->getElement(indexOfSubArrayTwo));
+        indexOfSubArrayTwo++;
+        indexOfMergedArray++;
+    }
+    delete[] leftArray;
+    delete[] rightArray;
+}
+void mergeSort_adapter4stack(Adapter4stackPtr* array, int const begin, int const end)
+{
+    if (begin >= end)
+        return; // Returns recursively
+
+    auto mid = begin + (end - begin) / 2;
+    mergeSort_adapter4stack(array, begin, mid);
+    mergeSort_adapter4stack(array, mid + 1, end);
+    merge_adapter4stack(array, begin, mid, end);
+}
+void mergeSort_start_adapter4stack()
+{
+    Adapter4stackPtr* a = new Adapter4stackPtr();
+    //int* a; int n;
+    a->push(1);
+    a->push(2);
+    a->push(3);
+    a->push(4);
+    a->push(5);
+    a->push(6);
+    a->display();
+    int n = a->size();
+    cout << endl; a->display();
+    mergeSort_adapter4stack(a,0,n-1);
+    cout << endl; a->display();
+}
 
 int main()
 {
@@ -379,5 +470,10 @@ int main()
     //example_work_queuePtr();
     //example_work_adapter4queuePtr();
     //example_work_quickSortQueuePtr();
+
+    //var 92
+    //example_work_stack();
+    //example_work_adapter4stack();
+    mergeSort_start_adapter4stack();
 
 }
