@@ -535,7 +535,16 @@ void merge_sort_adapter4stackPtr_start() {
 };
 
 // var 38
-
+void _adapter4stackMas() {
+    Adapter4stackMas* ast = new Adapter4stackMas();
+    ast->push(1);
+    ast->push(2);
+    ast->push(3);
+    ast->push(4);
+    ast->push(5);
+    ast->display();
+    cout << endl;
+}
 
 int main()
 {
@@ -553,6 +562,8 @@ int main()
     //example_work_quickSortQueuePtr();
 
     // var 38
+    example_work_stackMas();
+    example_work_adapter4stackMas();
 
     // var 44
     //example_work_stack();
