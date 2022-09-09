@@ -461,24 +461,6 @@ void mergeSort_start_adapter4stack()
   * возвращает: указатель на отсортированный массив. Из-за особенностей работы данной реализации
   * отсортированная версия массива может оказаться либо в 'up', либо в 'down'
   **/
-void merge_sort_adapter4stackPtr_start() {
-    //merge_sort_adapter4stackPtr
-    Adapter4stackPtr* ast1 = new Adapter4stackPtr();
-    ast1->push(1000);
-    ast1->push(2000);
-    ast1->push(3000);
-    ast1->push(4000);
-    ast1->push(5000);
-    ast1->push(6000);
-    ast1->display();
-    int size = ast1->size();
-    cout << endl << " size: " << size << endl;
-    Adapter4stackPtr* ast2 = new Adapter4stackPtr();
-    for (int i=0;i<size;i++)
-        ast2->push(-1);
-    Adapter4stackPtr* result;
-    result = merge_sort_adapter4stackPtr(ast1, ast2, 0, size-1);
-};
 Adapter4stackPtr* merge_sort_adapter4stackPtr(Adapter4stackPtr* up, Adapter4stackPtr* down, unsigned int left, unsigned int right)
 {
     if (left == right)
@@ -505,43 +487,59 @@ Adapter4stackPtr* merge_sort_adapter4stackPtr(Adapter4stackPtr* up, Adapter4stac
             //if (l_buff[l_cur] < r_buff[r_cur])
             if (l_buff->getElement(l_cur) < r_buff->getElement(r_cur))
             {
-                target[i] = l_buff[l_cur];
+                //target[i] = l_buff[l_cur];
                 target->setElement(i, l_buff->getElement(l_cur));
                 l_cur++;
             }
             else
             {
-                target[i] = r_buff[r_cur];
+                //target[i] = r_buff[r_cur];
+                target->setElement(i, r_buff->getElement(r_cur));
                 r_cur++;
             }
         }
         else if (l_cur <= middle)
         {
-            target[i] = l_buff[l_cur];
+            //target[i] = l_buff[l_cur];
+            target->setElement(i, l_buff->getElement(l_cur));
             l_cur++;
         }
         else
         {
-            target[i] = r_buff[r_cur];
+            //target[i] = r_buff[r_cur];
+            target->setElement(i, r_buff->getElement(r_cur));
             r_cur++;
         }
     }
     return target;
 }
+void merge_sort_adapter4stackPtr_start() {
+    //merge_sort_adapter4stackPtr
+    Adapter4stackPtr* ast1 = new Adapter4stackPtr();
+    ast1->push(1000);
+    ast1->push(2000);
+    ast1->push(3000);
+    ast1->push(4000);
+    ast1->push(5000);
+    ast1->push(6000);
+    ast1->display();
+    int size = ast1->size();
+    cout << endl << " size: " << size << endl;
+    Adapter4stackPtr* ast2 = new Adapter4stackPtr();
+    for (int i=0;i<size;i++)
+        ast2->push(-1);
+    Adapter4stackPtr* result;
+    result = merge_sort_adapter4stackPtr(ast1, ast2, 0, size-1);
+    cout << endl;
+    result->display();
+};
+
+// var 38
+
 
 int main()
 {
-    // 76 variant
-    //example_work_stack();  
-    //example_work_adapter4stack();
-    //bubbleSort4stackptr();  
-
-    // 78 variant 
-    //example_work_stackMas();
-    //example_work_adapter4stackMas();
-    //bubbleSort4stackMas();
-
-    //var 7
+    // var 7
     // example_work_adapter4queueStl();
 
     // var 45
@@ -554,12 +552,26 @@ int main()
     //example_work_adapter4queuePtr();
     //example_work_quickSortQueuePtr();
 
-    //var 92
+    // var 38
+
+    // var 44
+    //example_work_stack();
+    //example_work_adapter4stack();
+    //merge_sort_adapter4stackPtr_start();
+
+    // 76 variant
+    //example_work_stack();  
+    //example_work_adapter4stack();
+    //bubbleSort4stackptr();  
+
+    // 78 variant 
+    //example_work_stackMas();
+    //example_work_adapter4stackMas();
+    //bubbleSort4stackMas();
+
+    // var 92
     //example_work_stack();
     //example_work_adapter4stack();
     //mergeSort_start_adapter4stack();
-
-    //var 44
-    //example_work_stack();
-    example_work_adapter4stack();
 }
+
