@@ -130,11 +130,11 @@ void bubbleSort4stackMas() {
 // var 07
 void example_work_queueStl() {
     queue <int> q1;
-    q1.push(1);
-    q1.push(2);
-    q1.push(3);
-    q1.push(4);
-    q1.push(5);
+    q1.push(10);
+    q1.push(20);
+    q1.push(30);
+    q1.push(40);
+    q1.push(50);
     int size = q1.size();
     cout << "Size of queue: " << size << endl;
     for (int i = 0; i < size; i++) {
@@ -146,15 +146,15 @@ void example_work_queueStl() {
 }
 void example_work_adapter4queueStl() {
     Adapter4queueStl* ast = new Adapter4queueStl();
-    ast->push(1000);
-    ast->push(2000);
-    ast->push(3000);
-    ast->push(4000);
-    ast->push(5000);
+    ast->push(10);
+    ast->push(20);
+    ast->push(30);
+    ast->push(40);
+    ast->push(50);
     cout << endl;    ast->Dislay();
-    cout << endl << ast->setElement(4,9999);
+    cout << endl << ast->setElement(3,9999);
     cout << endl;    ast->Dislay();
-    cout << endl << ast->getElement(4);
+    cout << endl << ast->getElement(3);
     cout << endl;    ast->Dislay();
 }
 void CompCountSort(int* array, int* count, int size)
@@ -732,15 +732,86 @@ void example_work_quickSortQueuePtr1head() {
     cout << endl; q1->Display();
 }
 
+// var 39
+// Разделение по схеме Lomuto
+int partitionQueueStl(Adapter4queueStl* a, int start, int end)
+{
+    // Выбираем крайний правый элемент в качестве опорного элемента массива
+    //int pivot = a[end];
+    int pivot = a->getElement(end);
+    // элементы, меньшие точки поворота, будут перемещены влево от `pIndex`
+    // элементы больше, чем точка поворота, будут сдвинуты вправо от `pIndex`
+    // равные элементы могут идти в любом направлении
+    int pIndex = start;
+    // каждый раз, когда мы находим элемент, меньший или равный опорному, `pIndex`
+    // увеличивается, и этот элемент будет помещен перед опорной точкой.
+    for (int i = start; i < end; i++)
+    {
+        //if (a[i] <= pivot)
+        if (a->getElement(i) <= pivot)
+        {
+            //swap(a[i], a[pIndex]);
+            int tmp = a->getElement(i);
+            a->setElement(i, a->getElement(pIndex));
+            a->setElement(pIndex, tmp);
+            pIndex++;
+        }
+    }
+
+    // поменять местами `pIndex` с пивотом
+    //swap(a[pIndex], a[end]);
+
+    int tmp = a->getElement(end);
+    a->setElement(end, a->getElement(pIndex));
+    a->setElement(pIndex, tmp);
+
+    // вернуть `pIndex` (индекс опорного элемента)
+    return pIndex;
+}
+// Процедура быстрой сортировки
+void quicksortQueueStl(Adapter4queueStl* a, int start, int end)
+{
+    // базовое условие
+    if (start >= end) {
+        return;
+    }
+    // переставить элементы по оси
+    int pivot = partitionQueueStl(a, start, end);
+    // повторяем подмассив, содержащий элементы, меньшие опорной точки
+    quicksortQueueStl(a, start, pivot - 1);
+    // повторяем подмассив, содержащий элементы, превышающие точку опоры
+    quicksortQueueStl(a, pivot + 1, end);
+}
+void example_work_quickSortQueueStl() {
+    Adapter4queueStl* q1 = new Adapter4queueStl();
+    for(int i=1000; i>20; i-=10)
+        q1->push(i);
+
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Dislay();
+    quicksortQueueStl(q1, 0, size - 1);
+    cout << endl << "Sorted: ";
+    cout << endl; q1->Dislay();
+}
+
+
 int main()
 {
     // var 7
     // example_work_adapter4queueStl();
 
-    // var 45
+    // var 27 
+    //example_work_QueuePtr1head();
+    //example_work_adapter4queuePtr1head();
+    //example_work_quickSortQueuePtr1head();
+
+    // var 29
+    // https://www.techiedelight.com/ru/quicksort/
+    // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
     //example_work_queueMas();
     //example_work_adapter4queueMas();
-    //DoubleMergeSort4queueMas();
+    //example_work_quickSortQueueMas();
 
     // var 34 
     //example_work_queuePtr();
@@ -751,10 +822,20 @@ int main()
     //example_work_stackMas();
     //example_work_adapter4stackMas();
 
+    // var 39
+    example_work_queueStl();
+    example_work_adapter4queueStl();
+    example_work_quickSortQueueStl();
+
     // var 44
     //example_work_stack();
     //example_work_adapter4stack();
     //merge_sort_adapter4stackPtr_start();
+
+    // var 45
+    //example_work_queueMas();
+    //example_work_adapter4queueMas();
+    //DoubleMergeSort4queueMas();
 
     // 76 variant
     //example_work_stack();  
@@ -771,16 +852,8 @@ int main()
     //example_work_adapter4stack();
     //mergeSort_start_adapter4stack();
 
-    // var 29
-    // https://www.techiedelight.com/ru/quicksort/
-    // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
-    //example_work_queueMas();
-    //example_work_adapter4queueMas();
-    //example_work_quickSortQueueMas();
 
-    // var 27 
-    //example_work_QueuePtr1head();
-    //example_work_adapter4queuePtr1head();
-    //example_work_quickSortQueuePtr1head();
+
+
 }
 

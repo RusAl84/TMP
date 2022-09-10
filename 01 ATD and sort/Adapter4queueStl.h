@@ -34,7 +34,6 @@ public:
 		}
 		//delete(quTmp1);
 	}
-
 	int getElement(int ind) {
 		int size = qu->size();
 		int element = -1;
@@ -59,7 +58,7 @@ public:
 		}
 		return -1;
 	}
-	int  setElement(int ind, int element) {
+	int setElement(int ind, int element) {
 		int size = qu->size();
 		if ((ind >= 0) and (ind < size)) {
 			queue <int>* quTmp1 = new queue<int>();
