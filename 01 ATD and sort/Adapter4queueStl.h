@@ -20,7 +20,7 @@ public:
 	bool isEmpty() {
 		return qu->empty();               // или return size() == 0;
 	}
-	void Dislay() {
+	void display() {
 		int size = qu->size();
 		queue <int> *quTmp1 = new queue<int>();
 		for (int i = 0; i < size; i++) {

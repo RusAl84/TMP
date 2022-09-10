@@ -13,7 +13,17 @@
 #include "QueuePtr1head.h"
 #include "Adapter4queuePtr1head.h"
 #include "Adapter4stackStl.h"
+//#include <windows.h>
 using namespace std;
+
+//WORD time_ms(void)
+//{
+//    SYSTEMTIME st, lt;
+//    GetSystemTime(&st);
+//    GetLocalTime(&lt);
+//    return st.wMilliseconds;
+//}
+
 
 // var 76 
 void example_work_stack() {
@@ -153,11 +163,11 @@ void example_work_adapter4queueStl() {
     ast->push(30);
     ast->push(40);
     ast->push(50);
-    cout << endl;    ast->Dislay();
+    cout << endl;    ast->display();
     cout << endl << ast->setElement(3,9999);
-    cout << endl;    ast->Dislay();
+    cout << endl;    ast->display();
     cout << endl << ast->getElement(3);
-    cout << endl;    ast->Dislay();
+    cout << endl;    ast->display();
 }
 void CompCountSort(int* array, int* count, int size)
 {
@@ -180,25 +190,25 @@ void CompCountSort(int* array, int* count, int size)
 // var 45
 void example_work_queueMas() {
     QueueMas *q1 = new QueueMas();
-    q1->push(1000);
-    q1->push(2000);
-    q1->push(3000);
-    q1->push(4000);
-    q1->push(5000);
+    q1->push(10);
+    q1->push(20);
+    q1->push(30);
+    q1->push(40);
+    q1->push(50);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1->Dislay();
-    //cout << endl; q1->Dislay();
-    //cout << endl; q1->Dislay();
-    //cout << endl; q1->Dislay();
+    cout << endl; q1->display();
+    //cout << endl; q1->display();
+    //cout << endl; q1->display();
+    //cout << endl; q1->display();
     cout << endl;
     for (int i = 0; i < size; i++) {
         cout << q1->front() << " ";
         q1->pop();
     }    
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
     q1->push(100);
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
     q1->pop();
     size = q1->size();
 
@@ -213,12 +223,12 @@ void example_work_adapter4queueMas() {
     q1->push(5000);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
     q1->setElement(3,9999);
     int element = q1->getElement(3);
     cout << endl<< element;
-    cout << endl; q1->Dislay();
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
+    cout << endl; q1->display();
 }
 void DoubleMergeSort4queueMas() {
     adapter4queueMas* q1 = new adapter4queueMas();
@@ -229,7 +239,7 @@ void DoubleMergeSort4queueMas() {
     q1->push(5);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
 
 
 }
@@ -550,12 +560,10 @@ int partitionQueueMas(adapter4queueMas* a, int start, int end)
     // Выбираем крайний правый элемент в качестве опорного элемента массива
     //int pivot = a[end];
     int pivot = a->getElement(end);
-
     // элементы, меньшие точки поворота, будут перемещены влево от `pIndex`
     // элементы больше, чем точка поворота, будут сдвинуты вправо от `pIndex`
     // равные элементы могут идти в любом направлении
     int pIndex = start;
-
     // каждый раз, когда мы находим элемент, меньший или равный опорному, `pIndex`
     // увеличивается, и этот элемент будет помещен перед опорной точкой.
     for (int i = start; i < end; i++)
@@ -570,14 +578,11 @@ int partitionQueueMas(adapter4queueMas* a, int start, int end)
             pIndex++;
         }
     }
-
     // поменять местами `pIndex` с пивотом
     //swap(a[pIndex], a[end]);
-
     int tmp = a->getElement(end);
     a->setElement(end, a->getElement(pIndex));
     a->setElement(pIndex, tmp);
-
     // вернуть `pIndex` (индекс опорного элемента)
     return pIndex;
 }
@@ -599,17 +604,44 @@ void quicksortQueueMas(adapter4queueMas* a, int start, int end)
 }
 void example_work_quickSortQueueMas() {
     adapter4queueMas* q1 = new adapter4queueMas();
-    q1->push(5000);
-    q1->push(4000);
-    q1->push(3000);
-    q1->push(2000);
-    q1->push(1000);
-    int size = q1->size();
-    cout << "Size of queue: " << size << endl;
-    cout << endl; q1->Dislay();
-    quicksortQueueMas(q1, 0, size - 1);
-
-    cout << endl; q1->Dislay();
+    for(int n=300; n<=3000; n+=300)
+    {
+        //int n = 300;
+        for(int i=0; i<n; i++)
+            q1->push(rand());
+        int size = q1->size();
+        //cout << "Size of queue: " << size << endl;
+        //cout << endl; q1->display();
+        const clock_t begin_time = clock();
+        // do something
+        quicksortQueueMas(q1, 0, size - 1);
+        //cout << endl; q1->display();
+        //cout << endl << " n = " << n << " time (ms): ";
+        cout << endl;
+        cout << float(clock() - begin_time) / CLOCKS_PER_SEC;
+        for (int i = 0; i < n; i++)
+            q1->pop();
+        }
+            //n = 300 time(ms) : 0.003
+            //n = 600 time(ms) : 0.008
+            //n = 900 time(ms) : 0.021
+            //n = 1200 time(ms) : 0.035
+            //n = 1500 time(ms) : 0.049
+            //n = 1800 time(ms) : 0.067
+            //n = 2100 time(ms) : 0.092
+            //n = 2400 time(ms) : 0.115
+            //n = 2700 time(ms) : 0.143
+            //n = 3000 time(ms) : 0.195
+            //300	0,004
+            //600	0,008
+            //900	0,023
+            //1200	0,039
+            //1500	0,047
+            //1800	0,065
+            //2100	0,118
+            //2400	0,14
+            //2700	0,147
+            //3000	0,18
 };
 
 // var 27
@@ -638,9 +670,9 @@ void example_work_QueuePtr1head() {
     //    cout << q1->front() << " ";
     //    q1->pop();
     //}
-    //cout << endl; q1->Dislay();
+    //cout << endl; q1->display();
     //q1->push(100);
-    //cout << endl; q1->Dislay();
+    //cout << endl; q1->display();
     //q1->pop();
     size = q1->size();
 
@@ -790,10 +822,10 @@ void example_work_quickSortQueueStl() {
         q1->push(i);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
     quicksortQueueStl(q1, 0, size - 1);
     cout << endl << "Sorted: ";
-    cout << endl; q1->Dislay();
+    cout << endl; q1->display();
 }
 
 // var 40

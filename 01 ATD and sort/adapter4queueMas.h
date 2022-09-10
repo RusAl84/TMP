@@ -7,8 +7,8 @@ public:
 	adapter4queueMas() {
 		qu = new QueueMas();
 	}
-	void Dislay() {
-		qu->Dislay();
+	void display() {
+		qu->display();
 	}
 	void push(int num) {
 		qu->push(num);
@@ -22,6 +22,7 @@ public:
 	int front() {
 		return qu->front();
 	}
+
 	int getElement(int ind) {
 		int size = qu->size();
 		int element = -1;
@@ -43,7 +44,12 @@ public:
 		}
 		return element;
 	}
-	void  setElement(int ind, int element) {
+	/// <summary>
+	/// Установить элемент
+	/// </summary>
+	/// <param name="ind">индекс</param>
+	/// <param name="element">значение</param>
+	void setElement(int ind, int element) {
 		int size = qu->size();
 		if ((ind >= 0) and (ind < size)) {
 			QueueMas* queTmp1 = new QueueMas();

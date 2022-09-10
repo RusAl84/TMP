@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10*1000*1000
+#define SIZE 10*1000
 
 class QueueMas
 {
@@ -15,7 +15,7 @@ public:
         frnt = rear = 0;
     }
     //Вывод элементов очереди
-    void Dislay() {
+    void display() {
         //for (int i = frnt + 1; i < rear + 1; i++)
         //    cout << " " << queue[i];
         QueueMas* queTmp1 = new QueueMas();
