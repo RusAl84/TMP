@@ -786,7 +786,6 @@ void example_work_quickSortQueueStl() {
     Adapter4queueStl* q1 = new Adapter4queueStl();
     for(int i=1000; i>20; i-=10)
         q1->push(i);
-
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << endl; q1->Dislay();
@@ -823,9 +822,14 @@ int main()
     //example_work_adapter4stackMas();
 
     // var 39
-    example_work_queueStl();
-    example_work_adapter4queueStl();
-    example_work_quickSortQueueStl();
+    //example_work_queueStl();
+    //example_work_adapter4queueStl();
+    //example_work_quickSortQueueStl();
+
+    // var 40
+    //Библиотека классов 	Стек	Быстрая сортировка Хоару(c медианным(pivot) элеметом)
+
+
 
     // var 44
     //example_work_stack();
