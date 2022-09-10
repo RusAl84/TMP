@@ -3,6 +3,7 @@
 #include "Adapter4stackPtr.h"
 #include "StackMas.h"
 #include "Adapter4stackMas.h"
+#include <stack>
 #include <queue>
 #include "Adapter4queueStl.h"
 #include "QueueMas.h"
@@ -11,6 +12,7 @@
 #include "adapter4queuePtr.h"
 #include "QueuePtr1head.h"
 #include "Adapter4queuePtr1head.h"
+#include "Adapter4stackStl.h"
 using namespace std;
 
 // var 76 
@@ -794,6 +796,100 @@ void example_work_quickSortQueueStl() {
     cout << endl; q1->Dislay();
 }
 
+// var 40
+void example_work_stackStl() {
+    stack <int>* st = new stack<int>();
+    st->push(1);
+    st->push(2);
+    st->push(3);
+    st->push(4);
+    st->push(5);
+    int size = st->size();
+    cout << "Size: " << size << endl;
+    while (!st->empty()) {
+        cout << " " << st->top();
+        st->pop();
+    }
+    size = st->size();
+    cout << endl << "Size: " << size << endl;
+}
+void example_work_Adapter4stackStl() {
+    Adapter4stackStl* st = new Adapter4stackStl();
+    st->push(1);
+    st->push(2);
+    st->push(3);
+    st->push(4);
+    st->push(5);
+    int size = st->size();
+    cout << "Size: " << size << endl;
+    cout << endl; st->display();
+    st->setElement(3, 5555);
+    cout << endl; st->display();
+    cout << endl; st->display(); 
+    cout << endl << st->getElement(0);
+}
+int partitionStackStl(Adapter4stackStl* a, int start, int end)
+{
+    // Выбираем крайний правый элемент в качестве опорного элемента массива
+    //int pivot = a[end];
+    int pivot = a->getElement(end);
+    // элементы, меньшие точки поворота, будут перемещены влево от `pIndex`
+    // элементы больше, чем точка поворота, будут сдвинуты вправо от `pIndex`
+    // равные элементы могут идти в любом направлении
+    int pIndex = start;
+    // каждый раз, когда мы находим элемент, меньший или равный опорному, `pIndex`
+    // увеличивается, и этот элемент будет помещен перед опорной точкой.
+    for (int i = start; i < end; i++)
+    {
+        //if (a[i] <= pivot)
+        if (a->getElement(i) <= pivot)
+        {
+            //swap(a[i], a[pIndex]);
+            int tmp = a->getElement(i);
+            a->setElement(i, a->getElement(pIndex));
+            a->setElement(pIndex, tmp);
+            pIndex++;
+        }
+    }
+
+    // поменять местами `pIndex` с пивотом
+    //swap(a[pIndex], a[end]);
+
+    int tmp = a->getElement(end);
+    a->setElement(end, a->getElement(pIndex));
+    a->setElement(pIndex, tmp);
+
+    // вернуть `pIndex` (индекс опорного элемента)
+    return pIndex;
+}
+// Процедура быстрой сортировки
+void quicksortStackStl(Adapter4stackStl* a, int start, int end)
+{
+    // базовое условие
+    if (start >= end) {
+        return;
+    }
+    // переставить элементы по оси
+    int pivot = partitionStackStl(a, start, end);
+    // повторяем подмассив, содержащий элементы, меньшие опорной точки
+    quicksortStackStl(a, start, pivot - 1);
+    // повторяем подмассив, содержащий элементы, превышающие точку опоры
+    quicksortStackStl(a, pivot + 1, end);
+}
+void example_work_quickSortStackStl() {
+    Adapter4stackStl* st = new Adapter4stackStl();
+    st->push(1);
+    st->push(2);
+    st->push(3);
+    st->push(4);
+    st->push(5);
+    int size = st->size();
+    cout << "Size: " << size << endl;
+    cout << endl; st->display();
+    quicksortStackStl(st, 0, size - 1);
+    cout << endl; st->display();
+}
+
 
 int main()
 {
@@ -828,7 +924,9 @@ int main()
 
     // var 40
     //Библиотека классов 	Стек	Быстрая сортировка Хоару(c медианным(pivot) элеметом)
-
+    //example_work_stackStl();
+    //example_work_Adapter4stackStl();
+    //example_work_quickSortStackStl();
 
 
     // var 44

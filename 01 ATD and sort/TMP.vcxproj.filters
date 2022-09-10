@@ -56,5 +56,8 @@
     <ClInclude Include="Adapter4queuePtr1head.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Adapter4stackStl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

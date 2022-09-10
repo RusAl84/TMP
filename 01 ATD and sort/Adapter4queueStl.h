@@ -62,7 +62,6 @@ public:
 		int size = qu->size();
 		if ((ind >= 0) and (ind < size)) {
 			queue <int>* quTmp1 = new queue<int>();
-			
 			for (int i = 0; i < ind; i++) {
 				int elTmp = qu->front();
 				qu->pop();
