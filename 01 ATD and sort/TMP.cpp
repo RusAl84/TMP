@@ -595,11 +595,11 @@ void quicksortQueueMas(adapter4queueMas* a, int start, int end)
 }
 void example_work_quickSortQueueMas() {
     adapter4queueMas* q1 = new adapter4queueMas();
-    q1->push(1000);
-    q1->push(2000);
-    q1->push(3000);
-    q1->push(4000);
     q1->push(5000);
+    q1->push(4000);
+    q1->push(3000);
+    q1->push(2000);
+    q1->push(1000);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << endl; q1->Dislay();
@@ -652,6 +652,9 @@ int main()
     // var 29
     //example_work_queueMas();
     //example_work_adapter4queueMas();
-    //Быстрая сортировка Хоару(без медианного(pivot) элемента)
+    //example_work_quickSortQueueMas();
+
+    // var 27 
+
 }
 
