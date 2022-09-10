@@ -9,6 +9,8 @@
 #include "adapter4queueMas.h"
 #include "QueuePtr.h"
 #include "adapter4queuePtr.h"
+#include "QueuePtr1head.h"
+#include "Adapter4queuePtr1head.h"
 using namespace std;
 
 // var 76 
@@ -539,7 +541,7 @@ void _adapter4stackMas() {
     cout << endl;
 }
 
-//29
+// var 29
 // Разделение по схеме Lomuto
 int partitionQueueMas(adapter4queueMas* a, int start, int end)
 {
@@ -608,7 +610,127 @@ void example_work_quickSortQueueMas() {
     cout << endl; q1->Dislay();
 };
 
+// var 27
+void example_work_QueuePtr1head() {
+    QueuePtr1head* q1 = new QueuePtr1head();
+    q1->push(100);
+    q1->push(200);
+    q1->push(300);
+    q1->push(400);
+    q1->push(500);
+    q1->push(600);
+    q1->push(700);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << "front: " << q1->front() << endl;
+    q1->pop();
+    //q1->pop();
+    //q1->pop();
+    cout << "front: " << q1->front() << endl;
+    cout << endl; q1->Display();
+    cout << endl; q1->Display();
+    cout << endl; q1->Display();
 
+    //cout << endl;
+    //for (int i = 0; i < size; i++) {
+    //    cout << q1->front() << " ";
+    //    q1->pop();
+    //}
+    //cout << endl; q1->Dislay();
+    //q1->push(100);
+    //cout << endl; q1->Dislay();
+    //q1->pop();
+    size = q1->size();
+
+    cout << endl << "Size of queue: " << size << endl;
+}
+void example_work_adapter4queuePtr1head() {
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
+    q1->push(1);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    q1->setElement(2, 1000);
+    int element = q1->getElement(2);
+    cout << endl << element;
+    cout << endl; q1->Display();
+    element = q1->getElement(2);
+    cout << endl << element;
+    element = q1->getElement(2);
+    cout << endl << element;
+    cout << endl; q1->Display();
+}
+// Разделение по схеме Lomuto
+int partitionQueuePtr1head(Adapter4queuePtr1head* a, int start, int end)
+{
+    // Выбираем крайний правый элемент в качестве опорного элемента массива
+    //int pivot = a[end];
+    int pivot = a->getElement(end);
+
+    // элементы, меньшие точки поворота, будут перемещены влево от `pIndex`
+    // элементы больше, чем точка поворота, будут сдвинуты вправо от `pIndex`
+    // равные элементы могут идти в любом направлении
+    int pIndex = start;
+
+    // каждый раз, когда мы находим элемент, меньший или равный опорному, `pIndex`
+    // увеличивается, и этот элемент будет помещен перед опорной точкой.
+    for (int i = start; i < end; i++)
+    {
+        //if (a[i] <= pivot)
+        if (a->getElement(i) <= pivot)
+        {
+            //swap(a[i], a[pIndex]);
+            int tmp = a->getElement(i);
+            a->setElement(i, a->getElement(pIndex));
+            a->setElement(pIndex, tmp);
+            pIndex++;
+        }
+    }
+
+    // поменять местами `pIndex` с пивотом
+    //swap(a[pIndex], a[end]);
+
+    int tmp = a->getElement(end);
+    a->setElement(end, a->getElement(pIndex));
+    a->setElement(pIndex, tmp);
+
+    // вернуть `pIndex` (индекс опорного элемента)
+    return pIndex;
+}
+// Процедура быстрой сортировки
+void quicksortQueuePtr1head(Adapter4queuePtr1head* a, int start, int end)
+{
+    // базовое условие
+    if (start >= end) {
+        return;
+    }
+    // переставить элементы по оси
+    int pivot = partitionQueuePtr1head(a, start, end);
+
+    // повторяем подмассив, содержащий элементы, меньшие опорной точки
+    quicksortQueuePtr1head(a, start, pivot - 1);
+
+    // повторяем подмассив, содержащий элементы, превышающие точку опоры
+    quicksortQueuePtr1head(a, pivot + 1, end);
+}
+void example_work_quickSortQueuePtr1head() {
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
+    q1->push(5000);
+    q1->push(4000);
+    q1->push(3000);
+    q1->push(2000);
+    q1->push(1000);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    quicksortQueuePtr1head(q1, 0, size - 1);
+
+    cout << endl; q1->Display();
+}
 
 int main()
 {
@@ -650,11 +772,15 @@ int main()
     //mergeSort_start_adapter4stack();
 
     // var 29
+    // https://www.techiedelight.com/ru/quicksort/
+    // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
     //example_work_queueMas();
     //example_work_adapter4queueMas();
     //example_work_quickSortQueueMas();
 
     // var 27 
-
+    //example_work_QueuePtr1head();
+    //example_work_adapter4queuePtr1head();
+    //example_work_quickSortQueuePtr1head();
 }
 

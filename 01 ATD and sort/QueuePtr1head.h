@@ -1,5 +1,7 @@
 #pragma once
-class QueuePtr
+using namespace std;
+#include <iostream>
+class QueuePtr1head
 {
 	int csize;
 	struct list
@@ -7,12 +9,11 @@ class QueuePtr
 		int data; // поле данных
 		struct list* next; // указатель на следующий элемент
 	};
-	list *head, *rear;
+	list* head;
 public:
-	QueuePtr() {
+	QueuePtr1head() {
 		csize = 0;
 		head = nullptr;
-		rear = nullptr;
 	}
 	void push(int element) {
 		list* l = new list();
@@ -20,7 +21,6 @@ public:
 			l->next = nullptr;
 			l->data = element;
 			head = l;
-			rear = l;
 		}
 		else
 		{
@@ -31,7 +31,13 @@ public:
 		csize++;
 	}
 	int front() {
-		return rear->data;
+		list* l = head;
+		list* prev = nullptr;
+		while (l->next != nullptr) {
+			prev = l;
+			l = l->next;
+		}
+		return l->data;
 	}
 	int size() {
 		return csize;
@@ -41,7 +47,6 @@ public:
 			delete(head);
 			csize = 0;
 			head = nullptr;
-			rear = nullptr;
 		}
 		else
 		{
@@ -54,11 +59,10 @@ public:
 			csize--;
 			delete(l);
 			prev->next = nullptr;
-			rear = prev;
 		}
 	}
 	void Display() {
-		QueuePtr* queTmp1 = new QueuePtr();
+		QueuePtr1head* queTmp1 = new QueuePtr1head();
 		int c_size = size();
 		for (int i = 0; i < c_size; i++) {
 			queTmp1->push(front());
