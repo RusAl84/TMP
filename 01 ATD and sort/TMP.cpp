@@ -953,9 +953,5 @@ int main()
     //example_work_stack();
     //example_work_adapter4stack();
     //mergeSort_start_adapter4stack();
-
-
-
-
 }
 
