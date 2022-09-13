@@ -190,29 +190,31 @@ void CompCountSort(int* array, int* count, int size)
 // var 45
 void example_work_queueMas() {
     QueueMas *q1 = new QueueMas();
+    int n_opp = 0;
     q1->push(10);
     q1->push(20);
     q1->push(30);
     q1->push(40);
     q1->push(50);
-    int size = q1->size();
-    cout << "Size of queue: " << size << endl;
-    cout << endl; q1->display();
+    cout << n_opp;
+    //int size = q1->size();
+    //cout << "Size of queue: " << size << endl;
     //cout << endl; q1->display();
+    ////cout << endl; q1->display();
+    ////cout << endl; q1->display();
+    ////cout << endl; q1->display();
+    //cout << endl;
+    //for (int i = 0; i < size; i++) {
+    //    cout << q1->front() << " ";
+    //    q1->pop();
+    //}    
     //cout << endl; q1->display();
+    ////q1->push(100);
     //cout << endl; q1->display();
-    cout << endl;
-    for (int i = 0; i < size; i++) {
-        cout << q1->front() << " ";
-        q1->pop();
-    }    
-    cout << endl; q1->display();
-    q1->push(100);
-    cout << endl; q1->display();
-    q1->pop();
-    size = q1->size();
+    //q1->pop();
+    //size = q1->size();
 
-    cout << endl << "Size of queue: " << size << endl;
+    //cout << endl << "Size of queue: " << size << endl;
 }
 void example_work_adapter4queueMas() {
     adapter4queueMas* q1 = new adapter4queueMas();
@@ -936,7 +938,7 @@ int main()
     // var 29
     // https://www.techiedelight.com/ru/quicksort/
     // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
-    //example_work_queueMas();
+    example_work_queueMas();
     //example_work_adapter4queueMas();
     //example_work_quickSortQueueMas();
 

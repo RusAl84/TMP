@@ -33,13 +33,16 @@ public:
     }
     //Помещение элемента в очередь
     void push(int num) {
+
         if (rear + 1 == frnt || (rear + 1 == SIZE && !frnt)) {
-            cout << "очередь полна" << endl;
+            cout << "очередь полна" << endl; 
             return;
         }
-        rear++;
-        if (rear == SIZE) rear = 0;
-        queue[rear] = num;
+        rear++; 
+        if (rear == SIZE) rear = 0; 
+        {
+        queue[rear] = num; 
+        }
     }
     // Извлечение элемента из очереди
     void pop() {
