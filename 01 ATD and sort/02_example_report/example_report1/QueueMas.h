@@ -2,22 +2,26 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10*1000
+#define SIZE 10*1000  
 
 class QueueMas
 {
     int* queue;
+    int* nop;
     int frnt, rear;
-    //int data[SIZE];
-public:
+public:  
     QueueMas() {
         queue = new int[SIZE];
         frnt = rear = 0;
+        nop = new int;
     }
-
+    void setNOP(int* _nop) {
+        nop = _nop;
+    }
+    int* getNOP() {
+        return nop;
+    }
     void display() {
-        //for (int i = frnt + 1; i < rear + 1; i++)
-        //    cout << " " << queue[i];
         QueueMas* queTmp1 = new QueueMas();
         int c_size = size();
         for (int i = 0; i < c_size; i++) {
@@ -32,16 +36,13 @@ public:
 
     }
 
-    void push(int num) {
-
-        if (rear + 1 == frnt || (rear + 1 == SIZE && !frnt)) {
-            cout << "î÷åðåäü ïîëíà" << endl;
-            return;
-        }
-        rear++;
+    void push(int num) {   //3
+        rear++;   *nop = *nop + 1;
+        *nop = *nop + 1;
         if (rear == SIZE) rear = 0;
         {
-            queue[rear] = num;
+            *nop = *nop + 1;
+            queue[rear] = num; 
         }
     }
 

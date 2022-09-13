@@ -1,17 +1,20 @@
 ﻿#include <iostream>
 #include "QueueMas.h"
+#include "adapter4queueMas.h"
 using namespace std;
 
 
 void example_work_queueMas() {
     QueueMas* q1 = new QueueMas();
-    int n_opp = 0;
+    int* nop = new int;
+    *nop = 0;
+    q1->setNOP(nop);
     q1->push(10);
     q1->push(20);
     q1->push(30);
     q1->push(40);
     q1->push(50);
-    cout << n_opp;
+    
     //int size = q1->size();
     //cout << "Size of queue: " << size << endl;
     //cout << endl; q1->display();
@@ -30,6 +33,7 @@ void example_work_queueMas() {
     //size = q1->size();
 
     //cout << endl << "Size of queue: " << size << endl;
+    cout << endl << *q1->getNOP() << endl;1
 }
 
 void example_work_adapter4queueMas() {
@@ -112,7 +116,7 @@ void example_work_quickSortQueueMas() {
         // do something
         quicksortQueueMas(q1, 0, size - 1);
         //cout << endl; q1->display();
-        //cout << endl << " n = " << n << " time (ms): ";
+        cout << endl << " n = " << n << " time (ms): ";
         cout << endl;
         cout << float(clock() - begin_time) / CLOCKS_PER_SEC;
         for (int i = 0; i < n; i++)
