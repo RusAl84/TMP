@@ -35,22 +35,22 @@ void example_work_adapter4stackMas() {
 }
 
 int partitionStackMas(Adapter4stackMas* a, int start, int end, int* nop)
-{
-    int pivot = a->getElement(end);  *nop += 1;
+{// 2+n(3+2n+6+6n+3+4n)+3+2n+6+6n+3+4n 
+    int pivot = a->getElement(end);  *nop += 1; // 2
     int pIndex = start; *nop += 1;
-    for (int i = start; i < end; i++) 
+    for (int i = start; i < end; i++)  //n
     {
         if (a->getElement(i) <= pivot)
         {
-            int tmp = a->getElement(i); *nop += 1;
-            a->setElement(i, a->getElement(pIndex)); *nop += 1;
-            a->setElement(pIndex, tmp); *nop += 1;
+            int tmp = a->getElement(i); *nop += 1; //3+2n
+            a->setElement(i, a->getElement(pIndex)); *nop += 1; //6+6n
+            a->setElement(pIndex, tmp); *nop += 1; //3+4n
             pIndex++; *nop += 1;
         }
     }
-    int tmp = a->getElement(end); *nop += 1;
-    a->setElement(end, a->getElement(pIndex)); *nop += 1;
-    a->setElement(pIndex, tmp); *nop += 1;
+    int tmp = a->getElement(end); *nop += 1; //3+2n
+    a->setElement(end, a->getElement(pIndex)); *nop += 1; //6+6n
+    a->setElement(pIndex, tmp); *nop += 1; //3+4n
     return pIndex;
 }
 
@@ -59,7 +59,7 @@ void quicksortStackMas(Adapter4stackMas* a, int start, int end, int* _nop)
     if (start >= end) {
         return;
     }
-    int pivot = partitionStackMas(a, start, end, _nop);
+    int pivot = partitionStackMas(a, start, end, _nop); //log2(n)*(2 + n(3 + 2n + 6 + 6n + 3 + 4n) + 3 + 2n + 6 + 6n + 3 + 4n)
     quicksortStackMas(a, start, pivot - 1, _nop);
     quicksortStackMas(a, pivot + 1, end, _nop);
 }
