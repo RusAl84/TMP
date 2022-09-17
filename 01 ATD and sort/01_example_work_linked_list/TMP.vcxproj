@@ -137,10 +137,10 @@
     <ClInclude Include="Adapter4stackMas.h" />
     <ClInclude Include="Adapter4stackPtr.h" />
     <ClInclude Include="Adapter4stackStl.h" />
-    <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueMas.h" />
     <ClInclude Include="QueuePtr.h" />
     <ClInclude Include="QueuePtr1head.h" />
+    <ClInclude Include="QueueStl.h" />
     <ClInclude Include="StackMas.h" />
     <ClInclude Include="StackPtr.h" />
   </ItemGroup>

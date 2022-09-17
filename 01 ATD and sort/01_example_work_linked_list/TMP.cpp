@@ -662,22 +662,12 @@ void example_work_QueuePtr1head() {
     q1->pop();
     //q1->pop();
     //q1->pop();
+    q1->push(999);
     cout << "front: " << q1->front() << endl;
     cout << endl; q1->Display();
     cout << endl; q1->Display();
     cout << endl; q1->Display();
-
-    //cout << endl;
-    //for (int i = 0; i < size; i++) {
-    //    cout << q1->front() << " ";
-    //    q1->pop();
-    //}
-    //cout << endl; q1->display();
-    //q1->push(100);
-    //cout << endl; q1->display();
-    //q1->pop();
     size = q1->size();
-
     cout << endl << "Size of queue: " << size << endl;
 }
 void example_work_adapter4queuePtr1head() {
@@ -690,7 +680,7 @@ void example_work_adapter4queuePtr1head() {
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << endl; q1->Display();
-    q1->setElement(2, 1000);
+    q1->setElement(2, 5000);
     int element = q1->getElement(2);
     cout << endl << element;
     cout << endl; q1->Display();
@@ -781,15 +771,15 @@ int partitionQueueStl(Adapter4queueStl* a, int start, int end)
     int pIndex = start;
     // каждый раз, когда мы находим элемент, меньший или равный опорному, `pIndex`
     // увеличивается, и этот элемент будет помещен перед опорной точкой.
-    for (int i = start; i < end; i++)
+    for (int i = start; i < end; i++) //3n 
     {
         //if (a[i] <= pivot)
         if (a->getElement(i) <= pivot)
         {
             //swap(a[i], a[pIndex]);
-            int tmp = a->getElement(i);
-            a->setElement(i, a->getElement(pIndex));
-            a->setElement(pIndex, tmp);
+            int tmp = a->getElement(i); //1
+            a->setElement(i, a->getElement(pIndex)); //1
+            a->setElement(pIndex, tmp); //1
             pIndex++;
         }
     }
@@ -819,15 +809,15 @@ void quicksortQueueStl(Adapter4queueStl* a, int start, int end)
     quicksortQueueStl(a, pivot + 1, end);
 }
 void example_work_quickSortQueueStl() {
-    Adapter4queueStl* q1 = new Adapter4queueStl();
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
     for(int i=1000; i>20; i-=10)
         q1->push(i);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
-    cout << endl; q1->display();
-    quicksortQueueStl(q1, 0, size - 1);
+    cout << endl; q1->Display();
+    //quicksortQueueStl(q1, 0, size - 1);
     cout << endl << "Sorted: ";
-    cout << endl; q1->display();
+    cout << endl; q1->Display();
 }
 
 // var 40
@@ -924,6 +914,82 @@ void example_work_quickSortStackStl() {
     cout << endl; st->display();
 }
 
+// var 83
+void countSort_queuePtr1head(Adapter4queuePtr1head* arr, int n) {
+
+    //int arr1[10];
+    //int count_arr[10];
+    Adapter4queuePtr1head* arr1 = new Adapter4queuePtr1head();
+    Adapter4queuePtr1head* count_arr = new Adapter4queuePtr1head();
+    for (int i = 0; i < n; i++) {
+        arr1->push(-1);
+        count_arr->push(-1);
+    }
+
+    //arr->Display();
+
+    //int x = arr[0];
+    int x = arr->getElement(0);
+
+    for (int i = 1; i < n; i++) {
+        //if (arr[i] > x)
+        if (arr->getElement(i) > x)
+            //x = arr[i];
+            x = arr->getElement(i);
+    }
+
+    for (int i = 0; i <= x; ++i) {
+        //count_arr[i] = 0;
+        count_arr->setElement(i,0);
+    }
+
+    for (int i = 0; i < n; i++) {
+        //count_arr[arr[i]]++;
+        count_arr->setElement(arr->getElement(i), count_arr->getElement(arr->getElement(i))+1);
+    }
+
+    for (int i = 1; i <= x; i++) {
+        //count_arr[i] += count_arr[i - 1];
+        count_arr->setElement(i, count_arr->getElement(i) + count_arr->getElement(i - 1));
+    }
+
+    count_arr->Display();
+
+    for (int i = n - 1; i >= 0; i--) {
+        //arr1[count_arr[arr[i]] - 1] = arr[i];
+        int arri = arr->getElement(i);
+        int pos = count_arr->getElement(arr->getElement(i)) - 1;
+        arr1->setElement(pos, arri);
+        //count_arr[arr[i]]--;
+        int mm = count_arr->getElement(arr->getElement(i)) - 1;
+        count_arr->setElement(arr->getElement(i), mm);
+    }
+
+    for (int i = 0; i < n; i++) {
+        //arr[i] = arr1[i];
+        arr->setElement(i, arr1->getElement(i));
+    }
+
+
+}
+void example_work_countSort_queuePtr1head() {
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
+    q1->push(900);
+    q1->push(200);
+    q1->push(300);
+    q1->push(400);
+    q1->push(500);
+    q1->push(600);
+    q1->push(700);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    countSort_queuePtr1head(q1, size);
+    cout << endl << "sorted:"<<endl; q1->Display();
+
+}
+
+
 
 int main()
 {
@@ -938,7 +1004,7 @@ int main()
     // var 29
     // https://www.techiedelight.com/ru/quicksort/
     // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
-    example_work_queueMas();
+    //example_work_queueMas();
     //example_work_adapter4queueMas();
     //example_work_quickSortQueueMas();
 
@@ -982,6 +1048,15 @@ int main()
     //example_work_stackMas();
     //example_work_adapter4stackMas();
     //bubbleSort4stackMas();
+
+    // var 79
+    //Библиотека классов 	Очередь	Пузырьковая
+
+    //var 83
+    //Указатели	Очередь с 1 головой	Распределяющий подсчет
+    //example_work_QueuePtr1head();
+    //example_work_adapter4queuePtr1head();
+    //example_work_countSort_queuePtr1head(); // пока не получилось
 
     // var 92
     //example_work_stack();
