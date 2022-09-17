@@ -13,10 +13,10 @@ public:
 		qu->push(element);
 	}
 	int front() {
-		qu->front();
+		return qu->front();
 	}
 	int size() {
-		qu->size();
+		return qu->size();
 	}
 	void pop() {
 		qu->pop();

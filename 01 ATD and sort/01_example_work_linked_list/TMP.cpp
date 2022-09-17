@@ -9,6 +9,7 @@
 #include "QueueMas.h"
 #include "adapter4queueMas.h"
 #include "QueuePtr.h"
+#include "QueueStl.h"
 #include "adapter4queuePtr.h"
 #include "QueuePtr1head.h"
 #include "Adapter4queuePtr1head.h"
@@ -140,35 +141,35 @@ void bubbleSort4stackMas() {
 }
 
 // var 07
-void example_work_queueStl() {
-    queue <int> q1;
-    q1.push(10);
-    q1.push(20);
-    q1.push(30);
-    q1.push(40);
-    q1.push(50);
-    int size = q1.size();
-    cout << "Size of queue: " << size << endl;
-    for (int i = 0; i < size; i++) {
-        cout << q1.front() << " ";
-        q1.pop();
-    }
-    size = q1.size();
-    cout << endl << "Size of queue: " << size << endl;
-}
-void example_work_adapter4queueStl() {
-    Adapter4queueStl* ast = new Adapter4queueStl();
-    ast->push(10);
-    ast->push(20);
-    ast->push(30);
-    ast->push(40);
-    ast->push(50);
-    cout << endl;    ast->display();
-    cout << endl << ast->setElement(3,9999);
-    cout << endl;    ast->display();
-    cout << endl << ast->getElement(3);
-    cout << endl;    ast->display();
-}
+//void example_work_queueStl() {
+//    queue <int> q1;
+//    q1.push(10);
+//    q1.push(20);
+//    q1.push(30);
+//    q1.push(40);
+//    q1.push(50);
+//    int size = q1.size();
+//    cout << "Size of queue: " << size << endl;
+//    for (int i = 0; i < size; i++) {
+//        cout << q1.front() << " ";
+//        q1.pop();
+//    }
+//    size = q1.size();
+//    cout << endl << "Size of queue: " << size << endl;
+//}
+//void example_work_adapter4queueStl() {
+//    Adapter4queueStl* ast = new Adapter4queueStl();
+//    ast->push(10);
+//    ast->push(20);
+//    ast->push(30);
+//    ast->push(40);
+//    ast->push(50);
+//    cout << endl;    ast->display();
+//    cout << endl << ast->setElement(3,9999);
+//    cout << endl;    ast->display();
+//    cout << endl << ast->getElement(3);
+//    cout << endl;    ast->display();
+//}
 void CompCountSort(int* array, int* count, int size)
 {
     register int i, j;
@@ -986,10 +987,73 @@ void example_work_countSort_queuePtr1head() {
     cout << endl; q1->Display();
     countSort_queuePtr1head(q1, size);
     cout << endl << "sorted:"<<endl; q1->Display();
-
 }
 
-
+// var 79
+void example_work_queueStl() {
+    QueueStl* q1 = new QueueStl();
+    q1->push(1000);
+    q1->push(2000);
+    q1->push(3000);
+    q1->push(4000);
+    q1->push(5000);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    cout << endl;
+    for (int i = 0; i < size; i++) {
+        cout << q1->front() << " ";
+        q1->pop();
+    }    
+    cout << endl; q1->Display();
+    q1->push(999);
+    cout << endl; q1->Display();
+    q1->pop();
+    size = q1->size();
+    //cout << endl << "Size of queue: " << size << endl;
+}
+void example_work_adapter4queueStl() {
+    Adapter4queueStl* q1 = new Adapter4queueStl();
+    q1->push(1000);
+    q1->push(2000);
+    q1->push(3000);
+    q1->push(4000);
+    q1->push(5000);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->display();
+    q1->setElement(3, 9999);
+    int element = q1->getElement(3);
+    cout << endl << element;
+    cout << endl; q1->display();
+    cout << endl; q1->display();
+}
+void bubbleSort_queueStl(Adapter4stackMas* ast) {
+    int size = ast->size();
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size - 1; j++) {
+            if (ast->getElement(j) > ast->getElement(j + 1)) {
+                int b = ast->getElement(j); // создали дополнительную переменную
+                ast->setElement(j, ast->getElement(j + 1)); // меняем местами
+                ast->setElement(j + 1, b); // значения элементов
+            }
+        }
+    }
+}
+void example_work_bubbleSort_queueStl() {
+    Adapter4stackMas* ast = new Adapter4stackMas();
+    ast->push(1);
+    ast->push(2);
+    ast->push(3);
+    ast->push(4);
+    ast->push(8);
+    ast->push(1);
+    ast->display();
+    cout << endl;
+    bubbleSort_queueStl(ast);
+    ast->display();
+    cout << endl;
+}
 
 int main()
 {
@@ -1051,6 +1115,9 @@ int main()
 
     // var 79
     //Библиотека классов 	Очередь	Пузырьковая
+    //example_work_queueStl();
+    //example_work_adapter4queueStl();
+    example_work_bubbleSort_queueStl();
 
     //var 83
     //Указатели	Очередь с 1 головой	Распределяющий подсчет

@@ -1,14 +1,14 @@
 #pragma once
-#include <queue>
+#include "QueueStl.h"
 #include <iostream>
 using namespace std;
 
 class Adapter4queueStl
 {
-	queue <int> *qu;
+	QueueStl *qu;
 public:
 	Adapter4queueStl() {
-		qu = new queue<int>();
+		qu = new QueueStl();
 	}
 	void push(int x)
 	{
@@ -16,9 +16,6 @@ public:
 	}
 	int size() {
 		return qu->size();
-	}
-	bool isEmpty() {
-		return qu->empty();               // или return size() == 0;
 	}
 	void display() {
 		int size = qu->size();
