@@ -27,6 +27,18 @@ public:
     ~StackMas() {
         //delete[] arr;
     }
+    void display() {
+        int st_size = size();
+        StackMas* st1 = new StackMas();
+        for (int i = 0; i < st_size; i++) {
+            st1->push(peek());
+            cout << " " << pop();
+        }
+        cout << endl;
+        for (int i = 0; i < st_size; i++) {
+            push(st1->pop());
+        }
+    }
     // Вспомогательная функция для добавления элемента `x` в stack
     void push(int element)
     {

@@ -66,19 +66,20 @@ public:
 		st->push(x);
 	}
 	void display() {
-		StackMas* tmpSt1 = new StackMas();
-		int size = st->size();
-		for (int i = 0; i < size; i++) {
-			int element = st->pop();
-			cout << " " << element;
-			tmpSt1->push(element);
-		}
-		delete(st);
-		StackMas* tmpSt2 = new StackMas();
-		for (int i = 0; i < size; i++)
-			tmpSt2->push(tmpSt1->pop());
-		delete(tmpSt1);
-		st = tmpSt2;
+		//StackMas* tmpSt1 = new StackMas();
+		//int size = st->size();
+		//for (int i = 0; i < size; i++) {
+		//	int element = st->pop();
+		//	cout << " " << element;
+		//	tmpSt1->push(element);
+		//}
+		//delete(st);
+		//StackMas* tmpSt2 = new StackMas();
+		//for (int i = 0; i < size; i++)
+		//	tmpSt2->push(tmpSt1->pop());
+		//delete(tmpSt1);
+		//st = tmpSt2;
+		st->display();
 	}
 };
 
