@@ -696,19 +696,21 @@ void example_work_quickSortQueueMas() {
 // var 27
 void example_work_QueuePtr1head() {
     QueuePtr1head* q1 = new QueuePtr1head();
-    q1->push(100);
-    q1->push(200);
-    q1->push(300);
-    q1->push(400);
-    q1->push(500);
-    q1->push(600);
-    q1->push(700);
+    q1->push(1000);
+    q1->push(2000);
+    q1->push(3000);
+    q1->push(4000);
+    q1->push(5000);
+    q1->push(6000);
+    q1->push(7000);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << "front: " << q1->front() << endl;
     q1->pop();
-    //q1->pop();
-    //q1->pop();
+    cout << endl; q1->Display();
+    q1->pop();
+    cout << endl; q1->Display();
+    q1->pop();
     q1->push(999);
     cout << "front: " << q1->front() << endl;
     cout << endl; q1->Display();
@@ -1101,6 +1103,66 @@ void example_work_bubbleSort_queueStl() {
     cout << endl;
 }
 
+// var 43 
+// Функция сортировки двухпутевым слиянием
+
+void mergeSort4queuePtr1head(Adapter4queuePtr1head* a, int l, int r)
+{
+    //cout << endl; a->Display();
+    if (l == r) return; // границы сомкнулись
+    int mid = (l + r) / 2; // определяем середину последовательности
+    // и рекурсивно вызываем функцию сортировки для каждой половины
+    mergeSort4queuePtr1head(a, l, mid);
+    mergeSort4queuePtr1head(a, mid + 1, r);
+    int i = l;  // начало первого пути
+    int j = mid + 1; // начало второго пути
+    //int* tmp = (int*)malloc(r * sizeof(int)); // дополнительный массив
+    Adapter4queuePtr1head* tmp = new Adapter4queuePtr1head();
+    for (int i = 0; i < r+1; i++)
+        tmp->push(-1);
+
+    for (int step = 0; step < r - l + 1; step++) // для всех элементов дополнительного массива
+    {
+        // записываем в формируемую последовательность меньший из элементов двух путей
+        // или остаток первого пути если j > r
+        //if ((j > r) || ((i <= mid) && (a[i] < a[j])))
+        if ((j > r) || ((i <= mid) && (a->getElement(i) < a->getElement(j))))
+        {
+            //tmp[step] = a[i];
+            tmp->setElement(step, a->getElement(i));
+            i++;
+        }
+        else
+        {
+            //tmp[step] = a[j];
+            tmp->setElement(step, a->getElement(j));
+            j++;
+        }
+    }
+    // переписываем сформированную последовательность в исходный массив
+    //tmp->Display();
+    for (int step = 0; step < r - l + 1; step++)
+        //a[l + step] = tmp[step];
+        a->setElement(l + step, tmp->getElement(step));
+}
+
+void  example_mergeSort4queuePtr1head() {
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
+    q1->push(6);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    q1->push(6);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    mergeSort4queuePtr1head(q1, 0,size-1);
+    cout << endl << "Sorted: " << endl; 
+    q1->Display();
+
+}
+
 int main()
 {
     // var 7
@@ -1127,7 +1189,7 @@ int main()
     // Массив	Стек	Быстрая сортировка Хоару (c медианным (pivot) элемнтом)
     //example_work_stackMas();
     //example_work_adapter4stackMas();
-    example_work_quickSortStackMas();
+    //example_work_quickSortStackMas();
 
     // var 39
     //example_work_queueStl();
@@ -1139,6 +1201,14 @@ int main()
     //example_work_stackStl();
     //example_work_Adapter4stackStl();
     //example_work_quickSortStackStl();
+
+    // var 43
+    //https://prog-cpp.ru/sort-merge/
+    // https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+    //Указатели	Очередь с 1 головой	Естественное двухпутевое слияние
+    //example_work_QueuePtr1head();
+    //example_work_adapter4queuePtr1head();
+    example_mergeSort4queuePtr1head();
 
     // var 44
     //example_work_stack();
