@@ -1208,7 +1208,7 @@ int main()
     //Указатели	Очередь с 1 головой	Естественное двухпутевое слияние
     //example_work_QueuePtr1head();
     //example_work_adapter4queuePtr1head();
-    example_mergeSort4queuePtr1head();
+    //example_mergeSort4queuePtr1head();
 
     // var 44
     //example_work_stack();
