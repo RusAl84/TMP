@@ -280,19 +280,19 @@ void DoubleMergeSort(adapter4queueMas* a, int l, int r) {
 // var 34
 void example_work_queuePtr() {
     QueuePtr* q1 = new QueuePtr();
-    q1->push(1);
-    q1->push(2);
-    q1->push(3);
-    q1->push(4);
-    q1->push(5);
+    q1->push(1000);
+    q1->push(2000);
+    q1->push(3000);
+    q1->push(4000);
+    q1->push(5000);
     int size = q1->size();
     cout << "Size of queue: " << size << endl;
     cout << endl << "Queue: "; q1->Display();
     cout << endl << "Front: " << q1->front();
     q1->pop();
     q1->pop();
-    q1->pop();
-    q1->push(6);
+
+    q1->push(20000);
     cout << endl << "Queue: "; q1->Display();
     cout <<endl<< "front: " << q1->front();
 }
@@ -1163,6 +1163,45 @@ void  example_mergeSort4queuePtr1head() {
 
 }
 
+void insertionSort_adapter4queuePtr(Adapter4queuePtr1head* arrayPtr, int length) // сортировка вставками
+{
+    int temp, // временная переменная для хранения значения элемента сортируемого массива
+        item; // индекс предыдущего элемента
+    for (int counter = 1; counter < length; counter++)
+    {
+        //temp = arrayPtr[counter]; // инициализируем временную переменную текущим значением элемента массива
+        temp = arrayPtr->getElement(counter);
+        item = counter - 1; // запоминаем индекс предыдущего элемента массива
+        while (item >= 0 && arrayPtr->getElement(item) > temp) // пока индекс не равен 0 и предыдущий элемент массива больше текущего
+        //while (item >= 0 && arrayPtr[item] > temp) // пока индекс не равен 0 и предыдущий элемент массива больше текущего
+        {
+            //arrayPtr[item + 1] = arrayPtr[item]; // перестановка элементов массива
+            arrayPtr->setElement(item + 1, arrayPtr->getElement(item));
+            //arrayPtr[item] = temp;
+            arrayPtr->setElement(item, temp);
+            item--;
+        }
+    }
+}
+
+
+void example_insertionSort_adapter4queuePtr() {
+    Adapter4queuePtr1head* q1 = new Adapter4queuePtr1head();
+    q1->push(6);
+    q1->push(2);
+    q1->push(3);
+    q1->push(4);
+    q1->push(5);
+    q1->push(6);
+    int size = q1->size();
+    cout << "Size of queue: " << size << endl;
+    cout << endl; q1->Display();
+    insertionSort_adapter4queuePtr(q1, size);
+    cout << endl << "Sorted: " << endl;
+    q1->Display();
+
+}
+
 int main()
 {
     // var 7
@@ -1219,6 +1258,13 @@ int main()
     //example_work_queueMas();
     //example_work_adapter4queueMas();
     //DoubleMergeSort4queueMas();
+
+    // var 66
+    //https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
+    //http://cppstudio.com/post/462/
+    //example_work_queuePtr();
+    //example_work_adapter4queuePtr();
+    example_insertionSort_adapter4queuePtr();
 
     // 76 variant
     //example_work_stack();  

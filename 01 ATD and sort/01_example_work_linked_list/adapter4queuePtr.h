@@ -27,6 +27,11 @@ public:
 	int front() {
 		return qu->front();
 	}
+	/// <summary>
+	/// Функция для получения элемента по индексу
+	/// </summary>
+	/// <param name="ind">идекс элемената</param>
+	/// <returns>элемент</returns>
 	int getElement(int ind) {
 		int size = qu->size();
 		int element = -1;
