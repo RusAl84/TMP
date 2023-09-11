@@ -17,7 +17,7 @@ public:
     // Конструктор для инициализации stack
     StackPtr(int size)
     {
-        arr = new int[size];
+        //arr = new int[size];
         capacity = size;
         top = -1;
         debug = false;
