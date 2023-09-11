@@ -1289,24 +1289,9 @@ int main()
     //example_work_countSort_queuePtr1head(); // пока не получилось
 
     // var 92
-    //example_work_stack();
-    //example_work_adapter4stack();
-    //mergeSort_start_adapter4stack();
-
-    StackPtr* st = new StackPtr();
-    st->push(5);
-    st->push(4);
-    st->push(3);
-    st->push(2);
-    st->push(1);
-    st->pop();
-    st->pop();
-    st->pop();
-    st->pop();
-    //st->pop();
-    //cout << st->peek();
-    st->Display();
-
+    example_work_stack();
+    example_work_adapter4stack();
+    mergeSort_start_adapter4stack();
 
 }
 

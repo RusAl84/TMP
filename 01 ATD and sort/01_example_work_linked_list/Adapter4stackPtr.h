@@ -40,6 +40,9 @@ public:
 			delete tmpSt1;
 			return element;
 		}
+		else {
+			cout << "Error int getElement(int ind)";
+		}
 		return -1;
 	}
 	/// <summary>
@@ -67,7 +70,9 @@ public:
 			st = tmpSt2;
 			return true;
 		}
-		
+		else {
+			cout << "Error setElement(int ind,int element)";
+		}
 		return false;
 	}
 	// Вспомогательная функция для добавления элемента `x` в stack
