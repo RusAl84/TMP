@@ -3,74 +3,75 @@
 #include <cstdlib>
 using namespace std;
 
-// Определяем емкость stack по умолчанию
-#define SIZE 10*1000*1000
+
 
 // Класс для представления stack
 class StackPtr
 {
-    int* arr;
-    int top;
+private:
+    struct node {
+        int data;
+        struct node* next;
+    };
+    struct node* myHead;
+    int top = -1;;
     int capacity;
     bool debug;
 public:
-    // Конструктор для инициализации stack
-    StackPtr(int size)
-    {
-        //arr = new int[size];
-        capacity = size;
-        top = -1;
-        debug = false;
-    }
-    StackPtr()
-    {
-        int size = SIZE;
-        arr = new int[size];
-        capacity = size;
-        top = -1;
-        debug = false;
-    }
+
     // Деструктор для освобождения памяти, выделенной для stack
     ~StackPtr() {
-        delete[] arr;
+        struct node* current = myHead;
+        struct node* tmp;
+        cout << endl;
+        while (current) {
+            tmp = current;
+            current = current->next;
+            delete tmp;
+        }
     }
     // Вспомогательная функция для добавления элемента `x` в stack
-    void push(int x)
+    void push(int data)
     {
-        if (isFull())
-        {
-            cout << "Overflow\nProgram Terminated\n";
-            exit(EXIT_FAILURE);
-        }
-        if (debug)
-            cout << "Inserting " << x << endl;
-        arr[++top] = x;
+        struct node* newItem = new node();
+        newItem->data = data;
+        if (top == -1)
+            newItem->next = NULL;
+        else
+            newItem->next = myHead;
+        myHead = newItem;
+        top++;
     }
     // Вспомогательная функция для извлечения верхнего элемента из stack
     int pop()
     {
-        // проверка на опустошение stack
-        if (isEmpty())
+        int data = 0;
+        if (top < 0)
         {
-            if (debug)
-            cout << "Underflow\nProgram Terminated\n";
-            exit(EXIT_FAILURE);
+            cout << "Error get empty element\n";
         }
-        if (debug)
-        cout << "Removing " << peek() << endl;
-
-        // уменьшаем размер stack на 1 и (необязательно) возвращаем извлеченный элемент
-        return arr[top--];
+        else
+        { 
+            struct node* current = myHead;
+            struct node* old;   
+            old = myHead;
+            myHead = current->next;
+            data = current->data;
+            delete old;
+            top--;
+        }
+        return data;
     }
     // Вспомогательная функция для возврата верхнего элемента stack
     int peek()
     {
-        if (!isEmpty()) {
-            return arr[top];
-        }
-        else {
+        if (top < 0)
+        {
+            cout << "Error get empty element\n";
             exit(EXIT_FAILURE);
         }
+        int data = myHead->data;
+        return data;
     }
     // Вспомогательная функция для возврата размера stack
     int size() {
@@ -83,6 +84,21 @@ public:
     // Вспомогательная функция для проверки, заполнен ли stack или нет
     bool isFull() {
         return top == capacity - 1;     // или return size() == capacity;
+    }
+    void Display() {
+        if (top < 0)
+        {
+            cout << "Stack empty\n";
+        }
+        else
+        {
+            struct node* current = myHead;
+            cout << endl;
+            while (current) {
+                cout << " " << current->data;
+                current = current->next;
+            }
+        }
     }
 };
 

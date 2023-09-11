@@ -1264,7 +1264,7 @@ int main()
     //http://cppstudio.com/post/462/
     //example_work_queuePtr();
     //example_work_adapter4queuePtr();
-    example_insertionSort_adapter4queuePtr();
+    //example_insertionSort_adapter4queuePtr();
 
     // 76 variant
     //example_work_stack();  
@@ -1294,7 +1294,19 @@ int main()
     //mergeSort_start_adapter4stack();
 
     StackPtr* st = new StackPtr();
-    cout<<st->
+    st->push(5);
+    st->push(4);
+    st->push(3);
+    st->push(2);
+    st->push(1);
+    st->pop();
+    st->pop();
+    st->pop();
+    st->pop();
+    //st->pop();
+    //cout << st->peek();
+    st->Display();
+
 
 }
 
