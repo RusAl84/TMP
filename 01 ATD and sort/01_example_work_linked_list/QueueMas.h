@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10*1000
+
 
 class QueueMas
 {

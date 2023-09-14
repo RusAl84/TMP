@@ -14,6 +14,7 @@
 #include "QueuePtr1head.h"
 #include "Adapter4queuePtr1head.h"
 #include "Adapter4stackStl.h"
+#include "stackStl.h"
 //#include <windows.h>
 using namespace std;
 
@@ -1202,6 +1203,36 @@ void example_insertionSort_adapter4queuePtr() {
 
 }
 
+void example_work_stackStl2() {
+    stackStl* s1 = new stackStl();
+    s1->push(1000);
+    s1->push(2000);
+    s1->push(3000);
+    s1->push(4000);
+    s1->push(5000);
+    s1->Display(); cout << "\n";
+    s1->pop();
+    s1->pop();
+    s1->Display(); cout << "\n";
+    s1->pop();
+    s1->Display(); cout << "\n";
+    
+    //int size = q1->size();
+    //cout << "Size of queue: " << size << endl;
+    //cout << endl; q1->Display();
+    //cout << endl;
+    //for (int i = 0; i < size; i++) {
+    //    cout << q1->front() << " ";
+    //    q1->pop();
+    //}
+    //cout << endl; q1->Display();
+    //q1->push(999);
+    //cout << endl; q1->Display();
+    //q1->pop();
+    //size = q1->size();
+    //cout << endl << "Size of queue: " << size << endl;
+}
+
 int main()
 {
     // var 7
@@ -1282,6 +1313,10 @@ int main()
     //example_work_adapter4queueStl();
     //example_work_bubbleSort_queueStl();
 
+    // var 80
+    //Библиотека классов 	Стек	Пузырьковая
+    example_work_stackStl2();
+
     //var 83
     //Указатели	Очередь с 1 головой	Распределяющий подсчет
     //example_work_QueuePtr1head();
@@ -1289,9 +1324,9 @@ int main()
     //example_work_countSort_queuePtr1head(); // пока не получилось
 
     // var 92
-    example_work_stack();
-    example_work_adapter4stack();
-    mergeSort_start_adapter4stack();
+    //example_work_stack();
+    //example_work_adapter4stack();
+    //mergeSort_start_adapter4stack();
 
 }
 
