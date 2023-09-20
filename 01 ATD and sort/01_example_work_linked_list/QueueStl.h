@@ -33,6 +33,7 @@ public:
 			push(queTmp1->front());
 			queTmp1->pop();
 		}
+		delete queTmp1;
 	}
 };
 
