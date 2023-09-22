@@ -1,10 +1,12 @@
 ﻿#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <ctime>
 
 using namespace std;
 
-
 // An optimized version of Bubble Sort
-void bubbleSort(int arr[], int n)
+vector<int> bubbleSort(vector<int> arr, int n)
 {
     int i, j;
     bool swapped;
@@ -16,25 +18,45 @@ void bubbleSort(int arr[], int n)
                 swapped = true;
             }
         }
-
         // If no two elements were swapped
         // by inner loop, then break
         if (swapped == false)
             break;
     }
+    return arr;
 }
 
 // Function to print an array
-void printArray(int arr[], int size)
+void printArray(vector<int> arr)
 {
-    int i;
-    for (i = 0; i < size; i++)
+    int size = arr.size();
+    for (int i = 0; i < size; i++)
         cout << " " << arr[i];
+}
+
+vector<int> genData(int n) {
+
+    srand(unsigned(time(nullptr)));
+    vector<int> arr(n);
+    generate(arr.begin(), arr.end(), rand);
+    return arr;
 }
 
 
 int main()
 {
-    cout << "Hello World!\n";
+    
+    vector<int> arr;
+    arr = genData(300);
+    printArray(arr); //Проверка генерации чисел
+
+    int N = 300;
+
+    arr=bubbleSort(arr, N);
+    cout << endl << endl;
+    printArray(arr); //Проверка генерации чисел
+
+    
+    return 0;
 }
 
