@@ -47,7 +47,6 @@ vector<int> genData(int n) {
 
 int main()
 {
-    
     vector<int> arr;
     
     //printArray(arr); //Проверка генерации чисел
@@ -63,9 +62,6 @@ int main()
         cout << " nop = " << nop << endl;
     }
 
-
-
-    
     return 0;
 }
 
