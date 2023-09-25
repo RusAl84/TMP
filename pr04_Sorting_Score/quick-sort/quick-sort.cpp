@@ -24,11 +24,11 @@ vector<int> genData(int n) {
 int main()
 {
     vector<int> arr;
-    
+
     //printArray(arr); //Проверка генерации чисел
-    cout <<  endl;
+    cout << endl;
     vector<int> presets = { 500, 1000, 3000, 5000, 8000, 10000, 20000, 30000 };
-    
+
     for (int i = 0; i < presets.size(); i++)
     {
         int N = presets[i];
