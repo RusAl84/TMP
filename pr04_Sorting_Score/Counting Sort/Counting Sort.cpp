@@ -18,7 +18,9 @@ vector<int> genData(int n) {
 
     srand(unsigned(time(nullptr)));
     vector<int> arr(n);
-    generate(arr.begin(), arr.end(), rand);
+    for (int i = 0; i < n; i++)
+        arr[i] = rand() * 100;
+    //generate(arr.begin(), arr.end(), rand);
     return arr;
 }
 
@@ -27,26 +29,26 @@ vector<int> countSort(vector<int>& inputArray)
     int N = inputArray.size(); nop++;  //1
 
     // Finding the maximum element of array inputArray[].
-    int M = 0;
-    nop++;  //1
-    for (int i = 0; i < N; i++)
-        M = max(M, inputArray[i]);//1
+    int M = 0; nop++;  //1
 
+    for (int i = 0; i < N; i++){
+        M = max(M, inputArray[i]); nop += 3;  //3
+    }
     // Initializing countArray[] with 0
-    vector<int> countArray(M + 1, 0);nop++;  //1
+    vector<int> countArray(M + 1, 0); nop += 3;  //3
 
     // Mapping each element of inputArray[] as an index
     // of countArray[] array
-    nop++;  //1
-    for (int i = 0; i < N; i++)
-        countArray[inputArray[i]]++;nop++;  //1
 
+    for (int i = 0; i < N; i++){
+        countArray[inputArray[i]]++; nop += 3;  //3
+    }
     // Calculating prefix sum at every index
     // of array countArray[]
-    nop++;  //1
-    for (int i = 1; i <= M; i++)
-        countArray[i] += countArray[i - 1];nop++;  //1
 
+    for (int i = 1; i <= M; i++){
+        countArray[i] += countArray[i - 1]; nop += 3;  //3
+    }
     // Creating outputArray[] from countArray[] array
     nop++;  //1
     vector<int> outputArray(N);
@@ -56,10 +58,10 @@ vector<int> countSort(vector<int>& inputArray)
     {
         outputArray[countArray[inputArray[i]] - 1]
             = inputArray[i];
-        nop++;  //1
+        nop += 3;  //3
 
         countArray[inputArray[i]]--;
-        nop++;  //1
+        nop+=3;  //3
     }
 
     return outputArray;
