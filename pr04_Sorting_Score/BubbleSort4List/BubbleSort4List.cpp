@@ -1,26 +1,48 @@
 ﻿#include <iostream>
+#include <list>
 #include <vector>
 #include <algorithm>
 #include <ctime>
 
 using namespace std;
 
-void printArray(vector<int> arr)
-{
-    int size = arr.size();
-    for (int i = 0; i < size; i++)
-        cout << " " << arr[i];
-}
+class Adapter4List {
+private:
+    list<int> *lis;
+    Adapter4List() {
+        lis = new list<int>();
+    }
+    ~Adapter4List() {
+        delete lis;
+        // TODO
+    }
+    void push(int data) {
+        lis->push_front(data);
+    }
+    void display() {
+        list<int> *tlis = new list<int>();
+        int size = lis->size();
+        for (int i = 0; i < size; i++) {
+            cout<<
+        }
+    }
+    int getElement(int ind) {
+        return 0;
+    }
 
-vector<int> genData(int n) {
+};
+
+
+
+list<int> genData(int n) {
 
     srand(unsigned(time(nullptr)));
-    vector<int> arr(n);
+    list<int> arr(n);
     generate(arr.begin(), arr.end(), rand);
     return arr;
 }
 
-unsigned int bubbleSort(vector<int> arr, int n)
+unsigned int bubbleSort(list<int> arr, int n)
 {
     unsigned int nop = 0;
     int i, j;
@@ -44,20 +66,20 @@ unsigned int bubbleSort(vector<int> arr, int n)
 
 int main()
 {
-    vector<int> arr;
+    list<int> arr;
     
     //printArray(arr); //Проверка генерации чисел
     cout <<  endl;
     vector<int> presets = { 500, 1000, 3000, 5000, 8000, 10000, 20000, 30000 };
     
-    for (int i = 0; i < presets.size(); i++)
-    {
-        int N = presets[i];
-        cout << "N = " << N;
-        arr = genData(N);
-        unsigned int nop = bubbleSort(arr, N);
-        cout << " nop = " << nop << endl;
-    }
+    //for (int i = 0; i < presets.size(); i++)
+    //{
+    //    int N = presets[i];
+    //    cout << "N = " << N;
+    //    arr = genData(N);
+    //    unsigned int nop = bubbleSort(arr, N);
+    //    cout << " nop = " << nop << endl;
+    //}
 
     return 0;
 }
