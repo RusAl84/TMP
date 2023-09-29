@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication1.cpp">
+    <ClCompile Include="quick-sort.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
