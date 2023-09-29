@@ -73,7 +73,31 @@ vector<int> genData(int n) {
 
     srand(unsigned(time(nullptr)));
     vector<int> arr(n);
+    //for (int i = 0; i < n; i++)
+    //    arr[i] = abs(rand()) * 1000;
     generate(arr.begin(), arr.end(), rand);
+    sort(arr.begin(), arr.end());
+    return arr;
+}
+
+vector<int> bubbleSort(vector<int> arr)
+{
+    int i, j;
+    int n = arr.size()-1;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) {
+        //swapped = false; 
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] >  arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);  
+                //swapped = true; 
+            }
+        }
+        // If no two elements were swapped
+        // by inner loop, then break
+        //if (swapped == false)  nop++; //1
+        //break;
+    }
     return arr;
 }
 
@@ -84,7 +108,11 @@ int main()
 
     //printArray(arr); //Проверка генерации чисел
     cout << endl;
-    vector<int> presets = { 500, 1000, 3000, 5000, 8000, 10000, 20000, 30000 };
+    vector<int> presets = { 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 3000 };
+
+    //arr = genData(3000);
+    //arr = bubbleSort(arr);
+    //printArray(arr);
 
     for (int i = 0; i < presets.size(); i++)
     {
@@ -92,10 +120,12 @@ int main()
         cout << "N = " << N;
         arr = genData(N);
         nop = 0;
+        //arr = bubbleSort(arr);
+        const clock_t begin_time = clock();
         quickSort(arr, 0, N-1);
-        cout << " nop = " << nop << endl;
+        cout << " nop = " << nop << " time = ";
+        cout << float(clock() - begin_time) / CLOCKS_PER_SEC << endl;
     }
-
     return 0;
 }
 
