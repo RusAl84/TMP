@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <ctime>
+#include <stack>
+#include <queue>
 
 using namespace std;
 // Function to swap two elements
@@ -62,24 +64,9 @@ void  quickSort(vector<int> arr, int low, int high)
         quickSort(arr, pi + 1, high);
     }
 }
-void printArray(vector<int> arr)
-{
-    int size = arr.size();
-    for (int i = 0; i < size; i++)
-        cout << " " << arr[i];
-}
 
-vector<int> genData(int n) {
 
-    srand(unsigned(time(nullptr)));
-    vector<int> arr(n);
-    //for (int i = 0; i < n; i++)
-    //    arr[i] = abs(rand()) * 1000;
-    generate(arr.begin(), arr.end(), rand);
-    //Сортировка
-    //sort(arr.begin(), arr.end());
-    return arr;
-}
+
 
 vector<int> bubbleSort(vector<int> arr)
 {
@@ -102,7 +89,23 @@ vector<int> bubbleSort(vector<int> arr)
     return arr;
 }
 
+vector<int> genData(int n) {
 
+    srand(unsigned(time(nullptr)));
+    vector<int> arr(n);
+    //for (int i = 0; i < n; i++)
+    //    arr[i] = abs(rand()) * 1000;
+    generate(arr.begin(), arr.end(), rand);
+    //Сортировка
+    //sort(arr.begin(), arr.end());
+    return arr;
+}
+void printArray(vector<int> arr)
+{
+    int size = arr.size();
+    for (int i = 0; i < size; i++)
+        cout << " " << arr[i];
+}
 int main()
 {
     vector<int> arr;
@@ -111,9 +114,10 @@ int main()
     cout << endl;
     vector<int> presets = { 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 3000 };
 
-    //arr = genData(3000);
+    arr = genData(30);
     //arr = bubbleSort(arr);
-    //printArray(arr);
+    arr = sort_quick_non_recursive(arr, 0, arr.size()-1);
+    printArray(arr);
 
     for (int i = 0; i < presets.size(); i++)
     {
