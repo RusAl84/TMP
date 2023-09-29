@@ -47,8 +47,9 @@ public:
         list<int>* tlis = new list<int>();
         int element;
         for (int i = 0; i < ind; i++) {
+            nop++; 
             element = lis->front();
-            tlis->push_front(element);
+            tlis->push_front(element); 
             lis->pop_front();
             nop += 3;
         }

@@ -77,7 +77,7 @@ vector<int> genData(int n) {
     //    arr[i] = abs(rand()) * 1000;
     generate(arr.begin(), arr.end(), rand);
     //Сортировка
-    sort(arr.begin(), arr.end());
+    //sort(arr.begin(), arr.end());
     return arr;
 }
 
