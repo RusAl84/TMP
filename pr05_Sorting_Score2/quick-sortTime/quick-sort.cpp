@@ -113,12 +113,10 @@ int main()
     //printArray(arr); //Проверка генерации чисел
     cout << endl;
     vector<int> presets = { 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 3000 };
-
-    arr = genData(30);
+    //arr = genData(30);
     //arr = bubbleSort(arr);
     //arr = sort_quick_non_recursive(arr, 0, arr.size()-1);
     //printArray(arr);
-
     for (int i = 0; i < presets.size(); i++)
     {
         int N = presets[i];
