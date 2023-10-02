@@ -97,7 +97,7 @@ vector<int> genData(int n) {
     //    arr[i] = abs(rand()) * 1000;
     generate(arr.begin(), arr.end(), rand);
     //Сортировка
-    //sort(arr.begin(), arr.end());
+    sort(arr.begin(), arr.end());
     return arr;
 }
 void printArray(vector<int> arr)
@@ -116,8 +116,8 @@ int main()
 
     arr = genData(30);
     //arr = bubbleSort(arr);
-    arr = sort_quick_non_recursive(arr, 0, arr.size()-1);
-    printArray(arr);
+    //arr = sort_quick_non_recursive(arr, 0, arr.size()-1);
+    //printArray(arr);
 
     for (int i = 0; i < presets.size(); i++)
     {
