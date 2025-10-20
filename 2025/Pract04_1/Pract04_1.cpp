@@ -49,7 +49,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	cout << "Вариант 80 практ. 4 ч1\n";
+	cout << "Вариант 80, 64 практ. 4 ч1\n";
 	myStack st;
 	st.push(1);
 	st.push(2);
