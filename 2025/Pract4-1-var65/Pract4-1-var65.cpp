@@ -95,8 +95,11 @@ public:
 
 int main() {
     myDeque dq;
+    dq.insertRear(1);
+    dq.insertRear(2);
+    dq.insertRear(3);
+    dq.insertRear(4);
     dq.insertRear(5);
-    dq.insertRear(10);
     cout << "Rear: " << dq.getRear() << endl;
     dq.deleteRear();
     cout << "New Rear: " << dq.getRear() << endl;
