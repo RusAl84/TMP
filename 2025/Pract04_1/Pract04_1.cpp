@@ -1,4 +1,4 @@
-﻿// Pract04_1.cpp Вариант 80
+﻿// Pract04_1.cpp Вариант 80, 64
 #include <stack>
 #include <iostream>
 #include <Windows.h>
