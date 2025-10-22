@@ -78,16 +78,33 @@ public:
         return arr[size - 1];
     }
 
+    void display()
+    {
+        myQueue temp_q(10);
+        cout <<  endl;
+        while (not isEmpty()) {
+            int x = getFront();
+            temp_q.enqueue(x);
+            dequeue();
+            cout << x << " $" << endl;
+        }
+        while (not temp_q.isEmpty()) {
+            int x = temp_q.getFront();
+            enqueue(x);
+            temp_q.dequeue();
+        }
+    }
+
 
 };
 
 int main()
 {
-    myQueue q(3);
+    myQueue q(10);
 
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
+    q.enqueue(1000);      
+    q.enqueue(2000);      
+    q.enqueue(3000);      
     cout << "Front: " << q.getFront() << endl;
 
     q.dequeue();
@@ -95,6 +112,9 @@ int main()
     cout << "Rear: " << q.getRear() << endl;
 
     q.enqueue(40);
+    q.display();
+    cout << " ____";
+    q.display();
 
     return 0;
 }
