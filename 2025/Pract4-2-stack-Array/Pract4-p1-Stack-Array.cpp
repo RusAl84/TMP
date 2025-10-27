@@ -101,6 +101,11 @@ public:
     void display() {
         st->display();
     }
+    /// <summary>
+    /// Функция получения элемента из стека
+    /// </summary>
+    /// <param name="ind"> индекс</param>
+    /// <returns> значение элемента </returns>
     int getElement(int ind) {
         myStack* tmp_st = new myStack(100);
         int element = 0;
@@ -121,7 +126,12 @@ public:
         delete tmp_st;
         return element;
     }
-    int setElement(int ind, int element ) {
+    /// <summary>
+    /// Внести значение в элемент списка
+    /// </summary>
+    /// <param name="ind"> индекс </param>
+    /// <param name="element"> значение </param>
+    void setElement(int ind, int element ) {
         myStack* tmp_st = new myStack(100);
         int index = 0;
         while (not isEmpty()) {
@@ -141,7 +151,6 @@ public:
             push(x);
         }
         delete tmp_st;
-        return element;
     }
 };
 
