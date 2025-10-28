@@ -80,8 +80,8 @@ public:
 class adapter4myStack {
     myStack* st;
 public:
-    adapter4myStack(int cap) {
-        st = new myStack(cap);
+    adapter4myStack(int _capacity) {
+        st = new myStack(_capacity);
     }
     void push(int x) {
         st->push(x);
