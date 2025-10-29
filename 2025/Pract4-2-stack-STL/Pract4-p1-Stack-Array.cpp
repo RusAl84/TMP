@@ -97,7 +97,6 @@ public:
 
 int main() {
     adapter4stackSTL st;
-
     st.push(100);
     st.push(200);
     st.push(300);
