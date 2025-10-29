@@ -97,13 +97,13 @@ public:
 
 int main() {
     adapter4stackSTL st;
-    st.push(100);
-    st.push(200);
-    st.push(300);
-    st.push(400);
+    st.push(100);   
+    st.push(200);   
+    st.push(300);   
+    st.push(400);   
+    st.push(700);   
     st.push(700);
-    st.push(700);
-    st.push(777);
+    st.push(777);   
     cout << "\n";
     st.display();
     cout << " st.getElement(0) = " << st.getElement(0) << endl;
