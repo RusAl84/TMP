@@ -6,7 +6,6 @@ using namespace std;
 
 class adapter4stackSTL {
     stack<int> * st;
-    int i;
 public:
     adapter4stackSTL() {
         st = new stack<int>();
@@ -45,7 +44,7 @@ public:
     /// <param name="ind"> индекс</param>
     /// <returns> значение элемента </returns>
     int getElement(int ind) {
-        stack <int>* tmp_st = new stack <int>();
+        adapter4stackSTL *tmp_st = new adapter4stackSTL();
         int element = 0;
         int index = 0;
         while (not isEmpty()) {
@@ -58,8 +57,8 @@ public:
             }
             index++;
         }
-        while (not tmp_st->empty()) {
-            int x = tmp_st->top();
+        while (not tmp_st->isEmpty()) {
+            int x = tmp_st->peek();
             tmp_st->pop();
             push(x);
         }
@@ -72,7 +71,7 @@ public:
     /// <param name="ind"> индекс </param>
     /// <param name="element"> значение </param>
     void setElement(int ind, int element ) {
-        stack <int>* tmp_st = new stack <int>();
+        adapter4stackSTL * tmp_st = new adapter4stackSTL();
         int index = 0;
         while (not isEmpty()) {
             int x = peek();
@@ -87,8 +86,8 @@ public:
             }
             index++;
         }
-        while (not tmp_st->empty()) {
-            int x = tmp_st->top();
+        while (not tmp_st->isEmpty()) {
+            int x = tmp_st->peek();
             tmp_st->pop();
             push(x);
         }
