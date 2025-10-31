@@ -22,7 +22,6 @@ public:
     bool isEmpty() {
         return st->empty();
     }
-
     void display() {
         stack <int>* tmp_st = new stack <int>();
         while (not isEmpty()) {
