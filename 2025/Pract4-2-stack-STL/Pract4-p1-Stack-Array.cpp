@@ -22,6 +22,9 @@ public:
     bool isEmpty() {
         return st->empty();
     }
+    /// <summary>
+    /// Функция вывода стека на экран
+    /// </summary>
     void display() {
         stack <int>* tmp_st = new stack <int>();
         while (not isEmpty()) {
