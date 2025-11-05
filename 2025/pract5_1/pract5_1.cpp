@@ -11,7 +11,6 @@ void printArray(vector<int> arr)
     for (int i = 0; i < size; i++)
         cout << " " << arr[i];
 }
-
 vector<int> genData(int n) {
     srand(unsigned(time(nullptr)));
     vector<int> arr(n);
@@ -27,10 +26,10 @@ vector<int> selectionSort(vector<int> arr)
         min_idx = i;  nop++;//1
         for (j = i + 1; j < n; j++) {
             nop++;//1
-            if (arr[j] < arr[min_idx])
+            if (arr[j] < arr[min_idx]){
                 nop++;//1
-            min_idx = j;
-            nop++;//1
+                min_idx = j; nop++;//1
+            }
         }
         nop++;//1
         if (min_idx != i) {
