@@ -2,17 +2,17 @@
 #include "StackMas.h"
 class Adapter4stackMas
 {
-	int* nop;
+	long long* nop;
 	StackMas* st;
 public:
 	Adapter4stackMas() {
 		st = new StackMas();
 	}
-	void setNOP(int* _nop) {
+	void setNOP(long long* _nop) {
 		nop = _nop;
 		st->setNOP(_nop);
 	}
-	int* getNOP() {
+	long long* getNOP() {
 		*nop = *nop + *st->getNOP();
 		return nop;
 	}

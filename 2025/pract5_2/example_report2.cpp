@@ -34,7 +34,7 @@ void example_work_adapter4stackMas() {
     cout << ast->getElement(2);
 }
 
-int partitionStackMas(Adapter4stackMas* a, int start, int end, int* nop)
+int partitionStackMas(Adapter4stackMas* a, int start, int end, long long* nop)
 {// 2+n(3+2n+6+6n+3+4n)+3+2n+6+6n+3+4n 
     int pivot = a->getElement(end);  *nop += 1; // 2
     int pIndex = start; *nop += 1;
@@ -48,13 +48,13 @@ int partitionStackMas(Adapter4stackMas* a, int start, int end, int* nop)
             pIndex++; *nop += 1;
         }
     }
-    int tmp = a->getElement(end); *nop += 1; //3+2n
+    int tmp = a->getElement(end); *nop += 1; //3+2n     // tmp=a[end];
     a->setElement(end, a->getElement(pIndex)); *nop += 1; //6+6n
     a->setElement(pIndex, tmp); *nop += 1; //3+4n
     return pIndex;
 }
 
-void quicksortStackMas(Adapter4stackMas* a, int start, int end, int* _nop)
+void quicksortStackMas(Adapter4stackMas* a, int start, int end, long long* _nop)
 {
     if (start >= end) {
         return;
@@ -63,12 +63,12 @@ void quicksortStackMas(Adapter4stackMas* a, int start, int end, int* _nop)
     quicksortStackMas(a, start, pivot - 1, _nop);
     quicksortStackMas(a, pivot + 1, end, _nop);
 }
-void example_work_quickSortStackMas(int* _nop) {
+void example_work_quickSortStackMas(long long* _nop) {
     Adapter4stackMas* st = new Adapter4stackMas();
     st->setNOP(_nop);
     for (int n = 300; n <= 3000; n += 300)
     {
-        int* p1 = st->getNOP();
+        long long* p1 = st->getNOP();
         *p1 = 0;
         //int n = 300;
         for (int i = 0; i < n; i++)
@@ -82,55 +82,14 @@ void example_work_quickSortStackMas(int* _nop) {
         cout << endl << " NOP: " << *st->getNOP() << endl;
         for (int i = 0; i < n; i++)
             st->pop();
-
     }
 }
 int main()
 {
     // var 38
-    int* nop = new int;
+    long long* nop = new long long;
     *nop = 0;
     //example_work_stackMas();
     //example_work_adapter4stackMas();
     example_work_quickSortStackMas(nop);
-
-    //    n = 300 time(ms) :
-    //    0.137
-    //    NOP : 59586104
-
-    //    n = 600 time(ms) :
-    //    0.529
-    //    NOP : 235660892
-
-    //    n = 900 time(ms) :
-    //    1.234
-    //    NOP : 674793880
-
-    //    n = 1200 time(ms) :
-    //    1.595
-    //    NOP : 1141864334
-
-    //    n = 1500 time(ms) :
-    //    2.743
-    //    NOP : 1990216642
-
-    //    n = 1800 time(ms) :
-    //    3.865
-    //    NOP : -1424239708
-
-    //    n = 2100 time(ms) :
-    //    5.443
-    //    NOP : -273528386
-
-    //    n = 2400 time(ms) :
-    //    7.226
-    //    NOP : 1343098684
-
-    //    n = 2700 time(ms) :
-    //    8.138
-    //    NOP : 2112128298
-
-    //    n = 3000 time(ms) :
-    //    10.891
-    //    NOP : 114136684
 }

@@ -9,7 +9,7 @@ class StackMas
     int top;
     int data[SIZE];
     int capacity;
-    int* nop;
+    long long* nop;
 public:
     StackMas()
     {
@@ -21,10 +21,10 @@ public:
     ~StackMas() {
         //delete[] arr;
     }
-    void setNOP(int* _nop) {
+    void setNOP(long long* _nop) {
         nop = _nop;
     }
-    int* getNOP() {
+    long long* getNOP() {
         return nop;
     }
     void display() { //2 + 4n
