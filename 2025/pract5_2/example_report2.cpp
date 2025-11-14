@@ -66,7 +66,7 @@ void quicksortStackMas(Adapter4stackMas* a, int start, int end, long long* _nop)
 void example_work_quickSortStackMas(long long* _nop) {
     Adapter4stackMas* st = new Adapter4stackMas();
     st->setNOP(_nop);
-    for (int n = 300; n <= 3000; n += 300)
+    for (int n = 300; n <= 3000; n += 100)
     {
         long long* p1 = st->getNOP();
         *p1 = 0;
