@@ -3,5 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="../Pract6-2-testing_module/Pract6-2-testing_module.vcxproj" />
   <Project Path="Pract6-2-testProj.vcxproj" />
 </Solution>
