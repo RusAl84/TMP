@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "myStack.h"
+#include "../Pract6-2-testProj/myStack.h"
 
 using namespace std;
 

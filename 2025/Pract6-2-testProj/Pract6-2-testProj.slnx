@@ -3,6 +3,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="../Pract6-2-testing_module/Pract6-2-testing_module.vcxproj" />
-  <Project Path="Pract6-2-testProj.vcxproj" />
+  <Project Path="../Pract6-2- UnitTest1/Pract6-2- UnitTest1.vcxproj" />
+  <Project Path="Pract6-2-testProj.vcxproj" Id="d82e2809-96f6-4a18-8330-2540fce3d1c1" />
 </Solution>

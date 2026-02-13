@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "adapter4myStack.h"
+
 using namespace std;
 
 int main()
