@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     long long nop = 0;  // number of operations
-    for (int n = 1; n <= 64; n++) {
+    for (int n = 1; n <= 128; n++) {
         const clock_t begin_time = clock();
         nop++;
         int s = 0; nop++;
