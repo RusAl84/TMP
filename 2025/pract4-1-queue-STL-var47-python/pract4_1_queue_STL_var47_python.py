@@ -58,7 +58,8 @@ if __name__ == "__main__":
     q.put(7)
     q.display()
     print(q.empty())      # False
-    q.put(7)
+    q.put(777)
+    q.display()
     print(q.full())       # True
     print(q.qsize())      # 3
     print(q.get())        # 1
