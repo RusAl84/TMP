@@ -117,5 +117,4 @@ if __name__ == "__main__":
     s.setElement(1, 777)
     s.setElement(2, 222)
     s.setElement(4, 888)
-
     s.display()
