@@ -94,9 +94,12 @@ class myStackAdapter(myStack):
 # Пример использования
 if __name__ == "__main__":
     s = myStackAdapter()
-    s.push(1)
-    s.push(2)
-    s.push(3)
+    s.push(10000)
+    s.push(20000)
+    s.push(30000)
+    s.push(40000)
+    s.push(50000)
+    s.display()
 
     # print(s)          # myStack([1, 2, 3])
     # print(s.peek())   # 3
@@ -108,13 +111,13 @@ if __name__ == "__main__":
     # print(s.is_empty())  # True
 
     # print(s)                 # myStackAdapter([10, 20, 30])
-    s.display()
-    print(s.getElement(0))   # 10  (нижний)
-    print(s.getElement(1))   # 30  (верхний)
-    print(s.getElement(4))  # 30  (верхний)
+    # s.display()
+    # print(s.getElement(0))   # 10  (нижний)
+    # print(s.getElement(1))   # 30  (верхний)
+    # print(s.getElement(4))  # 30  (верхний)
 
-    s.setElement(0, 0)
-    s.setElement(1, 777)
-    s.setElement(2, 222)
-    s.setElement(4, 888)
-    s.display()
+    # s.setElement(0, 0)
+    # s.setElement(1, 777)
+    # s.setElement(2, 222)
+    # s.setElement(4, 888)
+    # s.display()
