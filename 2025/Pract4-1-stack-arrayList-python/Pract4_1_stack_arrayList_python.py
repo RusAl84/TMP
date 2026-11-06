@@ -94,11 +94,11 @@ class myStackAdapter(myStack):
 # Пример использования
 if __name__ == "__main__":
     s = myStackAdapter()
-    s.push(10000)
-    s.push(20000)
-    s.push(30000)
-    s.push(40000)
-    s.push(50000)
+    s.push(100)      
+    s.push(200)      
+    s.push(300)      
+    s.push(400)      
+    s.push(500)      
     s.display()
 
     # print(s)          # myStack([1, 2, 3])
