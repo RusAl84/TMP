@@ -1,113 +1,99 @@
-#https://www.geeksforgeeks.org/dsa/implementation-deque-using-circular-array/
-class myDeque:
-    
-    # Constructor to initialize the deque with a given capacity
-    def __init__(self, c):
-        self.l = [None] * c
-        self.cap = c
+#https://www.geeksforgeeks.org/dsa/array-implementation-of-queue-simple/
+
+class myQueue:
+    def __init__(self, capacity):
+         #Maximum number of elements the queue can hold.
+        self.capacity = capacity
+        #  Array to store queue elements.
+        self.arr = [0] * capacity
+        #  Current number of elements in the queue.
         self.size = 0
-        self.front = 0
 
-    # Delete element from the front
-    def deleteFront(self):
-        
-        # Return None if deque is empty
-        if self.size == 0:
-            return None
-        else:
-            res = self.l[self.front]
+    # Check if queue is empty
+    def isEmpty(self):
+        return self.size == 0
 
-            # Move front index circularly
-            self.front = (self.front + 1) % self.cap
-            self.size -= 1
-            return res
+    # Check if queue is full
+    def isFull(self):
+        return self.size == self.capacity
 
-    # Insert element at the front
-    def insertFront(self, x):
-        # Return if deque is full
-        if self.size == self.cap:
+    # Enqueue
+    def enqueue(self, x):
+        if self.isFull():
+            print("Queue is full!")
             return
-        else:
-            # Move front index circularly
-            self.front = (self.front - 1 + self.cap) % self.cap
-            self.l[self.front] = x
-            self.size += 1
-
-    # Insert element at the rear
-    def insertRear(self, x):
-      
-        # Return if deque is full
-        if self.size == self.cap:
-            return
-      
-        # Calculate rear index
-        new_rear = (self.front + self.size) % self.cap
-        self.l[new_rear] = x
+        self.arr[self.size] = x
         self.size += 1
 
-    # Delete element from the rear
-    def deleteRear(self):
-        sz = self.size
-        # Return None if deque is empty
-        if sz == 0:
-            return None
-        else:
-            # Calculate rear index
-            rear = (self.front + sz - 1) % self.cap
-            self.size -= 1
-            return self.l[rear]
+    # Dequeue
+    def dequeue(self):
+        if self.isEmpty():
+            print("Queue is empty!")
+            return
+        for i in range(1, self.size):
+            self.arr[i - 1] = self.arr[i]
+        self.size -= 1
 
-    # Get the front element
-    def frontEle(self):
-        return self.l[self.front]
+    # Get front element
+    def getFront(self):
+        if self.isEmpty():
+            print("Queue is empty!")
+            return -1
+        return self.arr[0]
+        
+    def getRear(self):
+        if self.isEmpty():
+           print("Queue is empty!")
+           return -1
+        return self.arr[self.size - 1]
 
-    # Get the rear element
-    def rearEle(self):
-        # Calculate rear index
-        rear = (self.front + self.size - 1) % self.cap
-        return self.l[rear]
-
-    def isEmpty(self):
-        if self.size==0:
-            return True
-        else:
-            return False
+class myQueueAdapter(myQueue):
 
     def display(self):
-        tmpQ = myDeque(20)
+        tmpQ = myQueue(30)
+        print("Display ____")
         while not self.isEmpty():
-            x = self.frontEle()
-            self.deleteFront()
-            tmpQ.insertFront(x)
-            print(x)
+            element = self.getFront()
+            self.dequeue()
+            tmpQ.enqueue(element)
         while not tmpQ.isEmpty():
-            x = tmpQ.frontEle()
-            tmpQ.deleteFront()
-            self.insertFront(x)
+            element = tmpQ.getFront()
+            tmpQ.dequeue()
+            self.enqueue(element)
+            print(element)
+        print("____")
 
-class myDequeAdapter(myDeque):    
-     
-     def getElement(self, index):
+    def getElement(self, index):
+        element = -1 
+        if 0<=index<q.size:
+            tmpQ = myQueue(30)
+            ind=0
+            while not self.isEmpty():
+                element = self.getFront()
+                if index==ind:
+                    break
+                ind+=1 #TO DO 
+                self.dequeue()
+                tmpQ.enqueue(element)
+            while not tmpQ.isEmpty():
+                tmpElement = tmpQ.getFront()
+                tmpQ.dequeue()
+                self.enqueue(tmpElement)
+        return element
 
-            return False
 
+if __name__ == '__main__':
+    q = myQueueAdapter(30)
+    q.enqueue(10)
+    q.enqueue(20)
+    q.enqueue(30)
+    q.enqueue(40)
+    q.enqueue(50)
 
-if __name__ == "__main__":
-    dq = myDeque(20)
-    dq.insertRear(1000)
-    dq.insertFront(2000)
-    dq.insertRear(4000)
-    dq.insertRear(5000)
-    dq.insertRear(6000)
-
-    dq.display()
-
-    
-    # print(dq.front())
-    # print(dq.rear())
-    # dq.deleteFront()
-    # print(dq.front())
-    # print(dq.rear())
-    # dq.deleteRear()
-    # print(dq.front())
-    # print(dq.rear())
+    q.display()
+    # print(q.getElement(0))
+    # print(q.getElement(1))
+    # print(q.getElement(2))
+    # print(q.getElement(3))
+    # print(q.getElement(4))
+    # print(q.getElement(5))
