@@ -4,9 +4,8 @@
 from collections import deque
 
 class myQueue:
-
-    def __init__(self, items=None):
-        self._data = deque(items) if items is not None else deque()
+    def __init__(self):
+        self._data =  deque()
 
     def enqueue(self, item):
         """Добавить элемент в конец очереди. O(1)."""
@@ -50,25 +49,50 @@ class myQueue:
         print('__________')
 
 
-class myQueueAdapter(myQueue):
+class myQueueAdapter():
+    def __init__(self):
+        self.myQ =  myQueue()
+ 
+    def enqueue(self, item):
+        self.myQ.enqueue(item)
+
+    def dequeue(self):
+        self.myQ.dequeue()
+
+    def front(self):
+        return self.myQ.front()
+
+    def is_empty(self):
+        return self.myQ.is_empty()
+
+    def size(self):
+        return self.myQ.size()
+
+    def clear(self):
+        self.myQ.clear()  
+
+    def display(self):
+        self.myQ.display()
 
     def getElement(self,index): 
-        x=-1
-        if 0<=index<self.size():
+        element=-1
+        if 0<= index < self.size():
             tmp_q = myQueue()
             ind = 0 
             while not self.is_empty():
-                x = self.front()
-                tmp_q.enqueue(x)
+                element = self.front()
+                tmp_q.enqueue(element)
                 self.dequeue()
                 if ind==index:
                     break
                 ind+=1
             while not tmp_q.is_empty():
-                y = tmp_q.front()
-                self.enqueue(y)
+                tmp_int = tmp_q.front()
+                self.enqueue(tmp_int)
                 tmp_q.dequeue()
-        return x
+        else:
+            print("--- Ошибка доступа по индексу")
+        return element
     
     def setElement(self,  index, element): 
         x=-1
@@ -100,19 +124,14 @@ if __name__=='__main__':
     q.enqueue(5000)  
 
     q.display()
-    q.setElement(0,777)
+    q.setElement(1,777)
     q.display()
 
     print(q.getElement(0))          
     print(q.getElement(1))          
     print(q.getElement(4))          
     print(q.getElement(5))          
-    print(q.getElement(50))          
-    # print(q.front())  # 1
-    # print(q.dequeue())# 1
-    # print(q)          # myQueue([2, 3])
-    # print(q.size())   # 2
-    # print(bool(q))    # True
+    print(q.getElement(50))   
+    
 
-    # q.clear()
     # print(q.is_empty())  # True
