@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Pract4-2-Deque-Ptr.vcxproj" />
+  <Project Path="Pract4-2-Deque-Ptr.vcxproj" Id="f79bed79-a190-4b9a-a2ec-7f9fbfcbe87f" />
 </Solution>
