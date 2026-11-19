@@ -114,6 +114,7 @@ class myQueueAdapter:
             item = tq.getFront()
             tq.dequeue()
             self.enqueue(item)
+        return new_item
 
 if __name__ == '__main__':
     q = myQueueAdapter(30)
@@ -127,7 +128,7 @@ if __name__ == '__main__':
     q.display()
     q.setElement(4,7777777)
     q.display()
-    print(q.getElement(0))
+    print(q.getElement(1))
 
 
 
