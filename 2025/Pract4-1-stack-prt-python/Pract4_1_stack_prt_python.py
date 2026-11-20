@@ -46,6 +46,26 @@ class myStack:
             next = next.next
         return count+1
 
+class myStackAdapter(myStack):
+
+    def __init__(self):
+        self.st = myStack()
+    
+    def push(self, x):
+        self.st.push(x)
+
+    def pop(self):
+        self.st.pop()
+
+    def peek(self):
+        return self.st.peek()
+
+    def isEmpty(self):
+        return self.st.isEmpty()
+
+    def size(self):
+        return self.st.size()
+
     def display(self):
         tmpSt = myStack()
         print("display____")
@@ -59,8 +79,6 @@ class myStack:
             self.push(x)
             print(x)
         print("____")
-
-class myStackAdapter(myStack):
 
     def getElement(self, index):
         element =-1 
@@ -103,11 +121,11 @@ class myStackAdapter(myStack):
 if __name__ == "__main__":
     st = myStackAdapter()
 
-    st.push(1000)
-    st.push(2000)
-    st.push(3000)
-    st.push(4000)
-    st.push(5000)
+    st.push(10000)
+    st.push(20000)
+    st.push(30000)
+    st.push(40000)
+    st.push(50000)
     st.display()
 
     print("getElement(0)",st.getElement(0))
@@ -115,6 +133,9 @@ if __name__ == "__main__":
     print("getElement(2)",st.getElement(2))
     print("getElement(3)",st.getElement(3))
     print("getElement(4)",st.getElement(4))
+    print("getElement(5)",st.getElement(5))
 
-    st.setElement(4,777)
+    st.setElement(0,8888)
     st.display()
+
+    #https://www.geeksforgeeks.org/dsa/heap-sort/
